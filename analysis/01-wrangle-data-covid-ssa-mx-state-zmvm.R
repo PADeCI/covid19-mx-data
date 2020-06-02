@@ -21,7 +21,7 @@ library(tidyverse)
 ####            Load data                 #### 
 #--------------------------------------------#
 
-ssa <- read.csv("data-raw/200530COVID19MEXICO.csv")
+ssa <- read.csv("data-raw/200601COVID19MEXICO.csv")
 load("data-raw/df_pop_state.Rdata")   # population for states
 # Data for ZMVM
 load("data-raw/df_pop_ZMVM.Rdata")   
@@ -46,8 +46,8 @@ df_pop_state_2020 <- df_pop_state %>%
 
 # Check that database confirms numbers in the public report
 table(ssa$RESULTADO)
-# Oficial report: 87512 COVID cases, 38994 suspects
-# In data Value 1: 87512; Value 3: 38994
+# Oficial report: 93435 COVID cases, 38497 suspects
+# In data Value 1: 94435; Value 3: 38497
 
 # Keep important variables only from ssa data
 ssa_data <- ssa %>%
@@ -127,7 +127,7 @@ table(ssa_data$entidad)
  
 # Create a variable = 1 if COVID-19 is positive
 ssa_data$covid <- ifelse(ssa_data$RESULTADO == 1, 1, 0)
-# There must be 81400 observations = 1
+# There must be 93435 observations = 1
 table(ssa_data$covid)
 
 # Subset the data for COVID-19 cases only
