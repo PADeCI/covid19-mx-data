@@ -21,7 +21,7 @@ library(tidyverse)
 ####            Load data                 #### 
 #--------------------------------------------#
 
-ssa <- read.csv("data-raw/200531COVID19MEXICO.csv")
+ssa <- read.csv("data-raw/200603COVID19MEXICO.csv")
 load("data-raw/df_pop_state.Rdata")   # population for states
 # Data for ZMVM
 load("data-raw/df_pop_ZMVM.Rdata")   
@@ -189,7 +189,7 @@ table(ssa_data$date_dx)
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-max_date <- as.Date("2020-05-31")
+#max_date <- as.Date("2020-05-31")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -983,8 +983,8 @@ df_covid_ssa_state_zmvm <- df_covid_ssa_state %>%
   bind_rows(df_covid_ssa_ZMVM)
 
 # Add date stamp to data set
-#df_covid_ssa_state_zmvm$time_stamp <- Sys.Date()
-df_covid_ssa_state$time_stamp <- "2020-05-31"
+df_covid_ssa_state_zmvm$time_stamp <- Sys.Date()
+#df_covid_ssa_state$time_stamp <- "2020-05-31"
 
 
 #--------------------------------------------#
@@ -996,11 +996,11 @@ save(df_covid_ssa_state_zmvm,
      file = "data/state/df_covid_ssa_state.Rdata")
 
 # Save file in csv format
-#write.csv(df_covid_ssa_state_zmvm, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
-          #row.names = FALSE)
+write.csv(df_covid_ssa_state_zmvm, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
+          row.names = FALSE)
 
-write.csv(df_covid_ssa_state_zmvm, "data/state/covid_ssa_state_2020-05-31.csv",
-            row.names = FALSE)
+#write.csv(df_covid_ssa_state_zmvm, "data/state/covid_ssa_state_2020-05-31.csv",
+            #row.names = FALSE)
 
 # Another option to save the file (just in case accents are not shown)
 #write.table(df_covid_ssa_state_zmvm, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
