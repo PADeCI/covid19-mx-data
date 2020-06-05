@@ -1,0 +1,45 @@
+---
+title: "Informe diario"
+author: "PADeCI"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Descripción
+
+El siguiente documento expone los resultados que se obtuvieron del tablero de la página <https://coronavirus.gob.mx/datos/> y el tratámiento de las base de datos públicadas diariamente en la página <https://www.gob.mx/salud/documentos/datos-abiertos-152127> .<br>
+<br>
+
+#### Tablero de datos - Reporte oficial
+Plataforma oficial del Gobierno de México desarrollada por el equipo del Centro Geo-CONACYT.<br>
+
+
+```{r include=FALSE}
+library("readxl")
+my_data <- read_excel("/Users/marianafernandez/Documents/COSMO/covid19-mx-Data/data-raw/BaseSSA_2020_06_04.xlsx")
+```
+
+
+```{r echo=FALSE}
+knitr::kable(my_data)
+```
+
+#### Trabajo de PADeCI con la base de datos abiertos
+El equipo de PADeCI realiza diariamente el tratamiento de los datos abiertos publicados por la Dirección General de Epidemiología.
+
+```{r include=FALSE}
+library("readxl")
+my_data <- read_excel("/Users/marianafernandez/Documents/COSMO/covid19-mx-Data/data-raw/base3.xlsx")
+```
+
+
+```{r echo=FALSE}
+knitr::kable(my_data, caption = "Resultado Datos Abiertos")
+```
+
