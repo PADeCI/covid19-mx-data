@@ -21,7 +21,7 @@ library("XLConnect")
 #--------------------------------------------#
 ####             Read xlsx                ####  
 #--------------------------------------------#
-wb <- loadWorkbook("/Users/marianafernandez/Documents/COSMO/covid19-mx-data/data-raw/base3.xlsx")
+wb <- loadWorkbook("data-validation/bitacora_historica_datos_abiertos.xlsx")
 
 
 #--------------------------------------------#
@@ -76,8 +76,31 @@ tests <- sum(tests_data$new_cases)
 #--------------------------------------------#
 ####   Fill the notebook  ####  
 #--------------------------------------------#
+table(ssa_covid$date_dx)
+table(ssa_covid$date_sx)
+table(ssa_covid$date_dead)
 
 
+# Count number of observations
+dim(sx_data)
+dim(dx_data)
+dim(hosp_data)
+dim(icu_data)
+dim(vent_data)
+dim(deaths_data)
+dim(tests_data)
+
+# Count number of observations
+dim(sx_data_nal)
+dim(dx_data_nal)
+dim(hosp_data_nal)
+dim(icu_data_nal)
+dim(vent_data_nal)
+dim(deaths_data_nal)
+dim(tests_data_nal)
+
+
+dim(df_covid_ssa_ZMVM)
 
                          
 #--------------------------------------------#
