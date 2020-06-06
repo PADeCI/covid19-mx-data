@@ -40,6 +40,6 @@ my_data <- read_excel("/Users/marianafernandez/Documents/COSMO/covid19-mx-data/d
 
 
 ```{r echo=FALSE}
-knitr::kable(my_data, caption = "Resultado Datos Abiertos")
+knitr::kable(my_data)
 ```
 
