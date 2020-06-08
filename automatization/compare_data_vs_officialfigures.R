@@ -32,77 +32,6 @@ date <- Sys.Date()
 date <- format(date, format="%Y-%m-%d")
 
 
-#Confirmados, Negativos y Sospechosos
-resultado <- table(ssa$RESULTADO)
-resultado <- as.vector(resultado)
-confirmados <- resultado[1]
-negativos <- resultado[2]
-sospechosos <- resultado[3]
-
-                         
-#Hospitalizados
-indicator_hosp <- table(ssa_covid$TIPO_PACIENTE) # 2 = hospitalizado
-indicator_hosp <- as.vector(indicator_hosp)
-hospitalizados <- indicator_hosp[2]
-                         
-#Porcentaje hospitalizados
-perc_hosp <- (hospitalizados / confirmados) * 100
-table(ssa_covid$hosp_ind) # check if %hosp = hosp_ind/covid
-                         
-#UCI
-indicator_uci <- table(ssa_covid$UCI)# 1 = sí
-indicator_uci <- as.vector(indicator_uci)
-uci <- indicator_uci[1]
-                         
-#Check UCI
-table(ssa_covid$icu_ind)
-                         
-#Intubado
-indicator_intu <- table(ssa_covid$INTUBADO) # 1 = sí
-indicator_intu <- as.vector(indicator_intu)
-intubados <- indicator_intu[1]
-                         
-#Check intubados
-table(ssa_covid$vent_ind)
-                         
-#Dead
-indicator_deaths <- table(ssa_covid$dead_ind) # Has to be the same as the official report
-indicator_deaths <- as.vector(indicator_deaths)
-deaths <- indicator_deaths[2]
-                         
-#Pruebas en base
-tests <- sum(tests_data$new_cases)
-
-#--------------------------------------------#
-####   Fill the notebook  ####  
-#--------------------------------------------#
-table(ssa_covid$date_dx)
-table(ssa_covid$date_sx)
-table(ssa_covid$date_dead)
-
-
-# Count number of observations
-dim(sx_data)
-dim(dx_data)
-dim(hosp_data)
-dim(icu_data)
-dim(vent_data)
-dim(deaths_data)
-dim(tests_data)
-
-# Count number of observations
-dim(sx_data_nal)
-dim(dx_data_nal)
-dim(hosp_data_nal)
-dim(icu_data_nal)
-dim(vent_data_nal)
-dim(deaths_data_nal)
-dim(tests_data_nal)
-
-
-dim(df_covid_ssa_ZMVM)
-
-                         
 #--------------------------------------------#
 ####   Test to check the consistency  ####  
 #--------------------------------------------#
@@ -137,6 +66,76 @@ appendWorksheet(wb, data_fr, sheet = 1)
 saveWorkbook(wb)
 
 
+
+#Confirmados, Negativos y Sospechosos
+resultado <- table(ssa$RESULTADO)
+resultado <- as.vector(resultado)
+confirmados <- resultado[1]
+negativos <- resultado[2]
+sospechosos <- resultado[3]
+
+
+#Hospitalizados
+indicator_hosp <- table(ssa_covid$TIPO_PACIENTE) # 2 = hospitalizado
+indicator_hosp <- as.vector(indicator_hosp)
+hospitalizados <- indicator_hosp[2]
+
+#Porcentaje hospitalizados
+perc_hosp <- (hospitalizados / confirmados) * 100
+table(ssa_covid$hosp_ind) # check if %hosp = hosp_ind/covid
+
+#UCI
+indicator_uci <- table(ssa_covid$UCI)# 1 = sí
+indicator_uci <- as.vector(indicator_uci)
+uci <- indicator_uci[1]
+
+#Check UCI
+table(ssa_covid$icu_ind)
+
+#Intubado
+indicator_intu <- table(ssa_covid$INTUBADO) # 1 = sí
+indicator_intu <- as.vector(indicator_intu)
+intubados <- indicator_intu[1]
+
+#Check intubados
+table(ssa_covid$vent_ind)
+
+#Dead
+indicator_deaths <- table(ssa_covid$dead_ind) # Has to be the same as the official report
+indicator_deaths <- as.vector(indicator_deaths)
+deaths <- indicator_deaths[2]
+
+#Pruebas en base
+tests <- sum(tests_data$new_cases)
+
+#--------------------------------------------#
+####   Fill the notebook  ####  
+#--------------------------------------------#
+table(ssa_covid$date_dx)
+table(ssa_covid$date_sx)
+table(ssa_covid$date_dead)
+
+
+# Count number of observations
+dim(sx_data)
+dim(dx_data)
+dim(hosp_data)
+dim(icu_data)
+dim(vent_data)
+dim(deaths_data)
+dim(tests_data)
+
+# Count number of observations
+dim(sx_data_nal)
+dim(dx_data_nal)
+dim(hosp_data_nal)
+dim(icu_data_nal)
+dim(vent_data_nal)
+dim(deaths_data_nal)
+dim(tests_data_nal)
+
+
+dim(df_covid_ssa_ZMVM)
 
 
 
