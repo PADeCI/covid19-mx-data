@@ -29,7 +29,7 @@ my_data <- read_excel("/Users/marianafernandez/Documents/COSMO/covid19-mx-data/d
 ```{r echo=FALSE}
 #knitr::kable(my_data[, 2:7])
 n_row <- nrow(my_data)
-n_row_aux <- n_row -5
+n_row_aux <- n_row -6
 knitr::kable(my_data[n_row_aux:n_row, 2:7])
 #knitr::kable(my_data[n_row_aux:n_row, ])
 
@@ -48,7 +48,7 @@ my_data <- read_excel("/Users/marianafernandez/Documents/COSMO/covid19-mx-data/d
 #knitr::kable(my_data)
 #Show specific rows
 n_row <- nrow(my_data)
-n_row_aux <- n_row -5
+n_row_aux <- n_row -6
 
 knitr::kable(my_data[n_row_aux:n_row, ])
 

@@ -32,41 +32,6 @@ date <- Sys.Date()
 date <- format(date, format="%Y-%m-%d")
 
 
-#--------------------------------------------#
-####   Test to check the consistency  ####  
-#--------------------------------------------#
-
-# Just to double check we got the right numbers in everything
-
-#Confirmados
-ifelse(sum(dx_data$new_cases) == confirmados,"COINCIDE", "NO COINCIDE") 
-
-#Hospitalizados
-ifelse(sum(hosp_data$new_cases) == hospitalizados, "COINCIDE", "NO COINCIDE")
-
-#UCI
-ifelse(sum(icu_data$new_cases) == uci, "COINCIDE", "NO COINCIDE")
-
-#Intubados
-ifelse(sum(vent_data$new_cases) == intubados, "COINCIDE", "NO COINCIDE" )
-
-#Muertes
-ifelse(sum(deaths_data$new_cases) == deaths,"COINCIDE", "NO COINCIDE" )
-
-#Tests
-ifelse(sum(tests_data$new_cases) == tests,"COINCIDE", "NO COINCIDE" )
-
-
-
-#--------------------------------------------#
-####Create Data Frame and append new data ####  
-#--------------------------------------------#
-data_fr <- data.frame(date, confirmados, negativos, sospechosos, deaths,perc_hosp,hospitalizados, uci, intubados, tests)
-appendWorksheet(wb, data_fr, sheet = 1)
-saveWorkbook(wb)
-
-
-
 #Confirmados, Negativos y Sospechosos
 resultado <- table(ssa$RESULTADO)
 resultado <- as.vector(resultado)
@@ -107,6 +72,45 @@ deaths <- indicator_deaths[2]
 
 #Pruebas en base
 tests <- sum(tests_data$new_cases)
+
+
+
+#--------------------------------------------#
+####   Test to check the consistency  ####  
+#--------------------------------------------#
+
+# Just to double check we got the right numbers in everything
+
+#Confirmados
+ifelse(sum(dx_data$new_cases) == confirmados,"COINCIDE", "NO COINCIDE") 
+
+#Hospitalizados
+ifelse(sum(hosp_data$new_cases) == hospitalizados, "COINCIDE", "NO COINCIDE")
+
+#UCI
+ifelse(sum(icu_data$new_cases) == uci, "COINCIDE", "NO COINCIDE")
+
+#Intubados
+ifelse(sum(vent_data$new_cases) == intubados, "COINCIDE", "NO COINCIDE" )
+
+#Muertes
+ifelse(sum(deaths_data$new_cases) == deaths,"COINCIDE", "NO COINCIDE" )
+
+#Tests
+ifelse(sum(tests_data$new_cases) == tests,"COINCIDE", "NO COINCIDE" )
+
+
+
+#--------------------------------------------#
+####Create Data Frame and append new data ####  
+#--------------------------------------------#
+data_fr <- data.frame(date, confirmados, negativos, sospechosos, deaths,perc_hosp,hospitalizados, uci, intubados, tests)
+appendWorksheet(wb, data_fr, sheet = 1)
+saveWorkbook(wb)
+
+
+
+
 
 #--------------------------------------------#
 ####   Fill the notebook  ####  
