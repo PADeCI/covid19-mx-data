@@ -21,7 +21,7 @@ library(tidyverse)
 ####            Load data                 #### 
 #--------------------------------------------#
 
-ssa <- read.csv("data-raw/200608COVID19MEXICO.csv")
+ssa <- read.csv("data-raw/200610COVID19MEXICO.csv")
 load("data-raw/df_pop_state.Rdata")   # population for states
 # Data for ZMVM
 load("data-raw/df_pop_ZMVM.Rdata")   
@@ -159,7 +159,7 @@ ssa_covid <- ssa_covid %>%
 table(ssa_covid$TIPO_PACIENTE) # 2 = hospitalizado
 table(ssa_covid$hosp_ind) # check if %hosp = hosp_ind/covid
 table(ssa_covid$UCI) # 1 = sí
-table(ssa_covid$icu_ind)
+table(ssa_covid$icu_ind) 
 table(ssa_covid$INTUBADO) # 1 = sí
 table(ssa_covid$vent_ind)
 table(ssa_covid$dead_ind) # Has to be the same as the official report
