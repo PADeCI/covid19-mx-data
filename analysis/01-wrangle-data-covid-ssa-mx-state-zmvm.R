@@ -22,7 +22,7 @@ library(tidyverse)
 ####            Load data                 #### 
 #--------------------------------------------#
 
-ssa <- read.csv("data-raw/200619COVID19MEXICO.csv")
+ssa <- read.csv("data-raw/200621COVID19MEXICO.csv")
 load("data-raw/df_pop_state.Rdata")   # population for states
 # Data for ZMVM
 load("data-raw/df_pop_ZMVM.Rdata")   
@@ -190,7 +190,7 @@ table(ssa_data$date_dx)
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-#max_date <- as.Date("2020-06-12")
+#max_date <- as.Date("2020-06-20")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -1000,8 +1000,8 @@ save(df_covid_ssa_state_zmvm,
 write.csv(df_covid_ssa_state_zmvm, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
           row.names = FALSE)
 
-#write.csv(df_covid_ssa_state_zmvm, "data/state/covid_ssa_state_2020-05-31.csv",
-            #row.names = FALSE)
+#write.csv(df_covid_ssa_state_zmvm, "data/state/covid_ssa_state_2020-06-20.csv",
+#            row.names = FALSE)
 
 # Another option to save the file (just in case accents are not shown)
 #write.table(df_covid_ssa_state_zmvm, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),

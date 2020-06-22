@@ -9,6 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(DT)
 ```
 
 ### Descripción
@@ -28,11 +29,12 @@ my_data <- read_excel("/Users/marianafernandez/Documents/COSMO/covid19-mx-data/d
 
 ```{r echo=FALSE}
 #knitr::kable(my_data[, 2:7])
+#n_row <- nrow(my_data)
 n_row <- nrow(my_data)
-n_row_aux <- n_row -6
-knitr::kable(my_data[n_row_aux:n_row, 2:7])
+n_row_aux <- n_row - 6
+knitr::kable(my_data[n_row_aux:n_row, 1:6])
 #knitr::kable(my_data[n_row_aux:n_row, ])
-
+#datatable(my_data, rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T) )
 ```
 
 #### Trabajo de PADeCI con la base de datos abiertos
@@ -51,6 +53,10 @@ n_row <- nrow(my_data)
 n_row_aux <- n_row -6
 
 knitr::kable(my_data[n_row_aux:n_row, ])
+
+
+#datatable(my_data, rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T) )
+
 
 ```
 
