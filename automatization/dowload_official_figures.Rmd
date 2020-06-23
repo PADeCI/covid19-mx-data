@@ -1,0 +1,88 @@
+---
+title: "RPython"
+author: "MarianaFdz465"
+date: "6/22/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+#Es necesario indicar ubicación de python, porque MacOsx toma por defecto python 2.7
+use_python("/usr/local/bin/python3.7")
+```
+
+
+```{python}
+import requests
+import re
+import pandas as pd
+import datetime
+import openpyxl
+```
+
+```{python}
+#Obtenemos día del sistema
+fecha = datetime.date.today()
+print(fecha) 
+#fecha = ("2020-06-20")
+#print(fecha)
+
+
+#Url de donde vamos a extraer la información
+url = 'https://coronavirus.gob.mx/datos/Overview/info/getInfo.php'
+
+```
+
+```{python}
+DF_temp = pd.read_excel("/Users/marianafernandez/Documents/COSMO/covid19-mx-data/data-validation/bitacora_historica_tablero_oficial.xlsx")
+DF_temp
+```
+
+```{python}
+#. Creamos diccionario
+# Actualizamos datos
+
+value_1 = "Confirmados"
+value_2 = "Negativos"
+value_3 = "Sospechosos"
+value_4 = "Defunciones"
+value_5 = "Hospitalizados"
+
+data = {
+    "sPatType": {
+        "key_1": value_1, 
+        "key_2": value_2,
+        "key_3": value_3,
+        "key_4": value_4,
+        "key_5": value_5,
+    },
+    "cve": "000",
+    "nom": 'Nacional'
+}
+
+raw_data = requests.post(url, data=data).text
+confirmados = int(re.search(r'document\.getElementById\("gsPosDIV"\)\.innerHTML = \((\d+)', raw_data).group(1))
+negativos = int(re.search(r'document\.getElementById\("gsNegDIV"\)\.innerHTML = \((\d+)', raw_data).group(1))
+sospechosos = int(re.search(r'document\.getElementById\("gsSosDIV"\)\.innerHTML = \((\d+)', raw_data).group(1))
+defunciones = int(re.search(r'document\.getElementById\("gsDefDIV"\)\.innerHTML = \((\d+)', raw_data).group(1))
+#hospitalizados = re.search(r'document\.getElementById\("vHos"\)\.innerHTML =  \\d+(?:\\.\\d+)?%', raw_data).group(1)
+hospitalizados = 31.69
+```
+
+```{python}
+#Añadimos las tuplas siguientes
+new_row3 = {'Fecha':fecha, 'Confirmados':confirmados,'Negativos':negativos, 'Sospechosos': sospechosos,
+            'Defunciones': defunciones , "Porcentaje hospitalizados": hospitalizados}
+
+DF_temp = DF_temp.append(new_row3, ignore_index = True)
+```
+
+```{python}
+DF_temp
+```
+
+```{python}
+direccion = "/Users/marianafernandez/Documents/COSMO/covid19-mx-data/data-validation/"
+DF_temp.to_excel(direccion +"bitacora_historica_tablero_oficial" + ".xlsx", sheet_name='out_vars',encoding="utf-8", index = False)
+```
+
