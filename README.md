@@ -9,7 +9,7 @@
 </p> 
 
 _____
-# VERSIÓN EN ESPAÑOL 
+# VERSIÓN EN ESPAÑOL: Datos del COVID-19 en Mexico 
 # Sobre este repositorio :open_book:
 [PADeCI](https://twitter.com/PADeCI1) es un equipo de investigación interdisciplinario ubicado en Aguascalientes, México. Actualmente, uno de sus principales proyectos involucra el procesamiento, el análisis y la creación de datos sobre COVID-19 en México, necesarios para la toma de decisiones basada en evidencia en contextos de incertidumbre. Este repositorio corresponde a la primera etapa del análisis de datos: el proceso de limpieza. Los datos que son generados en esta etapa son la fuente primaria de información para el modelaje matemático, las proyecciones y las publicaciones de PADeCI. Siguiendo el principio científico de _transparencia_, cualquier persona interesada puede replicar el proceso de limpieza de datos hecho por el equipo de PADeCI, usando el contenido de este repositorio.
 
@@ -51,7 +51,7 @@ Regina Isabel Medina       | [GitHub](https://github.com/RMedina19) | [Twitter](
 
 _____
 
-# ENGLISH VERSION
+# ENGLISH VERSION: Mexico's COVID-19 data
 # About this repository :open_book:
 [PADeCI](https://twitter.com/PADeCI1) is an interdisciplinary research team based in Aguascalientes, Mexico. Currently, one of it's main projects concerns the processing, analysis and creation of COVID-19 data for Mexico, necessary for evidence-based decision making amid the context of uncertainty. This repository concerns the first stage of data analysis: the cleaning process. The data that is generated at this stage is the primary source of information that is used in PADeCI's mathematical modeling,  projections and publications. Following the scientific principle of _transparency_, any person can replicate the cleaning process done by PADeCI's team using the contents of this repository. 
 
