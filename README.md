@@ -3,13 +3,14 @@
 ![Build Status](https://img.shields.io/github/stars/PADeCI/covid19-mx-data)
 ![Build Status](https://img.shields.io/github/license/PADeCI/covid19-mx-data)
 ![Build Status](https://img.shields.io/twitter/url?style=social)
+![alt text]()
 
 # VERSIÓN EN ESPAÑOL 
 # Sobre este repositorio :open_book:
 [PADeCI](https://twitter.com/PADeCI1) es un equipo de investigación interdisciplinario ubicado en Aguascalientes, México. Actualmente, uno de sus principales proyectos concierne el procesamiento, análisis y creación de datos sobre COVID-19 en México, necesarios para la toma de decisiones basada en evidencia en contextos de incertidumbre. Este repositorio corresponde a la primera etapa del análisis de datos: el proceso de limpieza. Los datos que son generados en esta etapa son la fuente primaria de información para el modelaje matemático, las proyecciones y las publicaciones de PADeCI. Siguiendo el principio científico de _transparencia_, cualquier persona interesada puede replicar el proceso de limpieza de datos hecho por el equipo de PADeCI, usando el contenido de este repositorio.
 
 # Requisitos :computer:
-R version 3.6.2 (Ésta es la versión recomendada para evitar errores en el código, también conocidos como _bugs_) 
+R version 3.6.2 (ésta es la versión recomendada para evitar errores en el código, también conocidos como _bugs_). 
 
 # Uso :inbox_tray:
 Cualquier persona puede replicar el trabajo de PADeCI, ya sea clonando este repositorio en su computadora o descargando archivos específicos. 
