@@ -47,8 +47,6 @@ df_pop_state_2020 <- df_pop_state %>%
 
 # Check that database confirms numbers in the public report
 table(ssa$RESULTADO)
-# Oficial report: 97326 COVID cases, 42151  suspects
-# In data Value 1: 97326 ; Value 3: 42151 
 
 # Keep important variables only from ssa data
 ssa_data <- ssa %>%
@@ -128,16 +126,12 @@ table(ssa_data$entidad)
  
 # Create a variable = 1 if COVID-19 is positive
 ssa_data$covid <- ifelse(ssa_data$RESULTADO == 1, 1, 0)
-# There must be 93435 observations = 1
 table(ssa_data$covid)
 
 # Subset the data for COVID-19 cases only
 ssa_covid <- subset(ssa_data, covid==1)
 
 # Format date variables as.Date() and create date_dx and date_sx variables
-table(ssa_covid$FECHA_INGRESO)
-table(ssa_covid$FECHA_SINTOMAS)
-table(ssa_covid$FECHA_DEF)
 ssa_covid$date_dx <- as.Date(ssa_covid$FECHA_INGRESO, format = "%Y-%m-%d")
 ssa_covid$date_sx <- as.Date(ssa_covid$FECHA_SINTOMAS, format = "%Y-%m-%d")
 ssa_covid$date_dead <- as.Date(ssa_covid$FECHA_DEF, format = "%Y-%m-%d")
@@ -168,15 +162,8 @@ table(ssa_covid$dead_ind) # Has to be the same as the official report
 # Create a variable = 1 to count the number of test by state later
 # and the date_dx variable in the complete data set from SSA
 ssa_data$test_ind <- 1
-table(ssa_data$FECHA_INGRESO)
 ssa_data$date_dx <- as.Date(ssa_data$FECHA_INGRESO, format = "%Y-%m-%d")
 table(ssa_data$date_dx)
-
-# NOTA: Hay un registro con fecha 1969-12-31
-#       Esto debe ser un error.
-#       En las bases que usan ssa_data lo voy a omitir
-
-# ACTUALIZACIÓN: El registro con fecha 1969-12-31 fue corregido 
 
 
 #------------------------------------------------#
@@ -190,7 +177,7 @@ table(ssa_data$date_dx)
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-#max_date <- as.Date("2020-06-20")
+#max_date <- as.Date("2020-06-23")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -270,7 +257,7 @@ vent_data <- ssa_covid %>%
   mutate(cum_cases = cumsum(new_cases), 
          time_cases = c(0:(length(date_dx)-1)),
          var_outcome = "Ventilator",
-         var_resultado = "Intubado")
+         var_resultado = "Intubados")
 
 # Deaths grouped by (country, state, county) and date_dead
 deaths_data <- ssa_covid %>% 
@@ -332,8 +319,8 @@ sx_data_nal <- ssa_covid %>%
          state = "Mexico",
          county = "Mexico",
          pais = "México",
-         entidad = "México",
-         municipio = "México") %>%
+         entidad = "Nacional",
+         municipio = "Nacional") %>%
   group_by(country, state, county, pais, entidad, municipio, date_sx) %>%
   summarise(new_cases = sum(covid)) %>%
   complete(date_sx = seq.Date(min(date_sx), max_date, by="day"), # Create a sequence of dates
@@ -349,8 +336,8 @@ dx_data_nal <- ssa_covid %>%
          state = "Mexico",
          county = "Mexico",
          pais = "México",
-         entidad = "México",
-         municipio = "México") %>%
+         entidad = "Nacional",
+         municipio = "Nacional") %>%
   group_by(country, state, county, pais, entidad, municipio, date_dx) %>%
   summarise(new_cases = sum(covid)) %>%
   complete(date_dx = seq.Date(min(date_dx), max_date, by="day"), # Create a sequence of dates
@@ -366,8 +353,8 @@ hosp_data_nal <- ssa_covid %>%
          state = "Mexico",
          county = "Mexico",
          pais = "México",
-         entidad = "México",
-         municipio = "México") %>%
+         entidad = "Nacional",
+         municipio = "Nacional") %>%
   group_by(country, state, county, pais, entidad, municipio, date_dx) %>%
   summarise(new_cases = sum(hosp_ind)) %>%
   complete(date_dx = seq.Date(min(date_dx), max_date, by="day"), # Create a sequence of dates
@@ -383,8 +370,8 @@ icu_data_nal <- ssa_covid %>%
          state = "Mexico",
          county = "Mexico",
          pais = "México",
-         entidad = "México",
-         municipio = "México") %>%
+         entidad = "Nacional",
+         municipio = "Nacional") %>%
   group_by(country, state, county, pais, entidad, municipio, date_dx) %>%
   summarise(new_cases = sum(icu_ind)) %>%
   complete(date_dx = seq.Date(min(date_dx), max_date, by="day"), # Create a sequence of dates
@@ -400,8 +387,8 @@ vent_data_nal <- ssa_covid %>%
          state = "Mexico",
          county = "Mexico",
          pais = "México",
-         entidad = "México",
-         municipio = "México") %>%
+         entidad = "Nacional",
+         municipio = "Nacional") %>%
   group_by(country, state, county, pais, entidad, municipio, date_dx) %>%
   summarise(new_cases = sum(vent_ind)) %>%
   complete(date_dx = seq.Date(min(date_dx), max_date, by="day"), # Create a sequence of dates
@@ -409,7 +396,7 @@ vent_data_nal <- ssa_covid %>%
   mutate(cum_cases = cumsum(new_cases), 
          time_cases = c(0:(length(date_dx)-1)),
          var_outcome = "Ventilator",
-         var_resultado = "Intubado")
+         var_resultado = "Intubados")
 
 # Deaths 
 deaths_data_nal <- ssa_covid %>% 
@@ -417,8 +404,8 @@ deaths_data_nal <- ssa_covid %>%
          state = "Mexico",
          county = "Mexico",
          pais = "México",
-         entidad = "México",
-         municipio = "México") %>%
+         entidad = "Nacional",
+         municipio = "Nacional") %>%
   filter(!is.na(date_dead)) %>%
   group_by(country, state, county, pais, entidad, municipio, date_dead) %>%
   summarise(new_cases = sum(dead_ind)) %>%
@@ -586,178 +573,48 @@ ssa_data <- ssa_data %>%
 ####       Create the ZMVM category       ####   
 #--------------------------------------------#
 
-# Consider each county_id that is part of ZMVM
-
-ssa_covid_ZMVM <- ssa_covid %>%
-  mutate (ZMVM = case_when(county_id == "9002" ~ 1,
-                           county_id == "9003" ~ 1,
-                           county_id == "9004" ~ 1,
-                           county_id == "9005" ~ 1,
-                           county_id == "9006" ~ 1,
-                           county_id == "9007" ~ 1,
-                           county_id == "9008" ~ 1,
-                           county_id == "9009" ~ 1,
-                           county_id == "9010" ~ 1,
-                           county_id == "9011" ~ 1,
-                           county_id == "9012" ~ 1,
-                           county_id == "9013" ~ 1,
-                           county_id == "9014" ~ 1,
-                           county_id == "9015" ~ 1,
-                           county_id == "9016" ~ 1,
-                           county_id == "9017" ~ 1,
-                           county_id == "13069" ~ 1,
-                           county_id == "15002" ~ 1,
-                           county_id == "15009" ~ 1,
-                           county_id == "15010" ~ 1,
-                           county_id == "15011" ~ 1,
-                           county_id == "15013" ~ 1, 
-                           county_id == "15015" ~ 1, 
-                           county_id == "15016" ~ 1, 
-                           county_id == "15017" ~ 1, 
-                           county_id == "15020" ~ 1, 
-                           county_id == "15022" ~ 1, 
-                           county_id == "15023" ~ 1, 
-                           county_id == "15024" ~ 1, 
-                           county_id == "15025" ~ 1, 
-                           county_id == "15028" ~ 1, 
-                           county_id == "15029" ~ 1, 
-                           county_id == "15030" ~ 1, 
-                           county_id == "15031" ~ 1, 
-                           county_id == "15033" ~ 1, 
-                           county_id == "15034" ~ 1, 
-                           county_id == "15035" ~ 1, 
-                           county_id == "15036" ~ 1, 
-                           county_id == "15037" ~ 1, 
-                           county_id == "15038" ~ 1, 
-                           county_id == "15039" ~ 1, 
-                           county_id == "15044" ~ 1, 
-                           county_id == "15046" ~ 1, 
-                           county_id == "15050" ~ 1,
-                           county_id == "15053" ~ 1,
-                           county_id == "15057" ~ 1,
-                           county_id == "15058" ~ 1,
-                           county_id == "15059" ~ 1,
-                           county_id == "15060" ~ 1,
-                           county_id == "15061" ~ 1,
-                           county_id == "15065" ~ 1,
-                           county_id == "15068" ~ 1,
-                           county_id == "15069" ~ 1,
-                           county_id == "15070" ~ 1,
-                           county_id == "15075" ~ 1,
-                           county_id == "15081" ~ 1,
-                           county_id == "15083" ~ 1,
-                           county_id == "15084" ~ 1,
-                           county_id == "15089" ~ 1,
-                           county_id == "15091" ~ 1,
-                           county_id == "15092" ~ 1,
-                           county_id == "15093" ~ 1,
-                           county_id == "15094" ~ 1,
-                           county_id == "15095" ~ 1,
-                           county_id == "15096" ~ 1,
-                           county_id == "15099" ~ 1,
-                           county_id == "15100" ~ 1,
-                           county_id == "15103" ~ 1,
-                           county_id == "15104" ~ 1,
-                           county_id == "15108" ~ 1,
-                           county_id == "15109" ~ 1,
-                           county_id == "15112" ~ 1,
-                           county_id == "15120" ~ 1,
-                           county_id == "15121" ~ 1,
-                           county_id == "15122" ~ 1,
-                           county_id == "15125" ~ 1))  %>%
-  filter(ZMVM == 1) %>%
-  mutate(entidad = case_when(ZMVM == 1 ~ "ZMVM"), 
-         state = case_when(ZMVM == 1 ~ "MCMA"), 
-         county_name_esp = case_when(ZMVM == 1 ~ "ZMVM"), 
-         county_name_eng = case_when(ZMVM== 1 ~ "MCMA")) 
-
-
-ssa_data_ZMVM <- ssa_data %>%
-  mutate(ZMVM = case_when(county_id == "9002" ~ 1,
-                          county_id == "9003" ~ 1,
-                          county_id == "9004" ~ 1,
-                          county_id == "9005" ~ 1,
-                          county_id == "9006" ~ 1,
-                          county_id == "9007" ~ 1,
-                          county_id == "9008" ~ 1,
-                          county_id == "9009" ~ 1,
-                          county_id == "9010" ~ 1,
-                          county_id == "9011" ~ 1,
-                          county_id == "9012" ~ 1,
-                          county_id == "9013" ~ 1,
-                          county_id == "9014" ~ 1,
-                          county_id == "9015" ~ 1,
-                          county_id == "9016" ~ 1,
-                          county_id == "9017" ~ 1,
-                          county_id == "13069" ~ 1,
-                          county_id == "15002" ~ 1,
-                          county_id == "15009" ~ 1,
-                          county_id == "15010" ~ 1,
-                          county_id == "15011" ~ 1,
-                          county_id == "15013" ~ 1, 
-                          county_id == "15015" ~ 1, 
-                          county_id == "15016" ~ 1, 
-                          county_id == "15017" ~ 1, 
-                          county_id == "15020" ~ 1, 
-                          county_id == "15022" ~ 1, 
-                          county_id == "15023" ~ 1, 
-                          county_id == "15024" ~ 1, 
-                          county_id == "15025" ~ 1, 
-                          county_id == "15028" ~ 1, 
-                          county_id == "15029" ~ 1, 
-                          county_id == "15030" ~ 1, 
-                          county_id == "15031" ~ 1, 
-                          county_id == "15033" ~ 1, 
-                          county_id == "15034" ~ 1, 
-                          county_id == "15035" ~ 1, 
-                          county_id == "15036" ~ 1, 
-                          county_id == "15037" ~ 1, 
-                          county_id == "15038" ~ 1, 
-                          county_id == "15039" ~ 1, 
-                          county_id == "15044" ~ 1, 
-                          county_id == "15046" ~ 1, 
-                          county_id == "15050" ~ 1,
-                          county_id == "15053" ~ 1,
-                          county_id == "15057" ~ 1,
-                          county_id == "15058" ~ 1,
-                          county_id == "15059" ~ 1,
-                          county_id == "15060" ~ 1,
-                          county_id == "15061" ~ 1,
-                          county_id == "15065" ~ 1,
-                          county_id == "15068" ~ 1,
-                          county_id == "15069" ~ 1,
-                          county_id == "15070" ~ 1,
-                          county_id == "15075" ~ 1,
-                          county_id == "15081" ~ 1,
-                          county_id == "15083" ~ 1,
-                          county_id == "15084" ~ 1,
-                          county_id == "15089" ~ 1,
-                          county_id == "15091" ~ 1,
-                          county_id == "15092" ~ 1,
-                          county_id == "15093" ~ 1,
-                          county_id == "15094" ~ 1,
-                          county_id == "15095" ~ 1,
-                          county_id == "15096" ~ 1,
-                          county_id == "15099" ~ 1,
-                          county_id == "15100" ~ 1,
-                          county_id == "15103" ~ 1,
-                          county_id == "15104" ~ 1,
-                          county_id == "15108" ~ 1,
-                          county_id == "15109" ~ 1,
-                          county_id == "15112" ~ 1,
-                          county_id == "15120" ~ 1,
-                          county_id == "15121" ~ 1,
-                          county_id == "15122" ~ 1,
-                          county_id == "15125" ~ 1)) %>%
-  filter(ZMVM == 1) %>%
-  mutate(entidad = case_when(ZMVM == 1 ~ "ZMVM"), 
-         state = case_when(ZMVM == 1 ~ "MCMA"), 
-         county_name_esp = case_when(ZMVM == 1 ~ "ZMVM"), 
-         county_name_eng = case_when(ZMVM== 1 ~ "MCMA"))
-
 # Acronyms:
 # Zona Metropolitana del Valle de México (ZMVM)
 # Mexico City Metropolitan Area (MCMA)
+
+# Vector of ZMVM  county ids
+v_zmvm_id <- c("9002", "9003", "9004", "9005", "9006",
+               "9007", "9008", "9009", "9010", "9011",
+               "9012", "9013", "9014", "9015", "9016",
+               "9017", "13069",
+               "15002", "15009", "15010", "15011",
+               "15013", "15015", "15016", "15017", 
+               "15020", "15022", "15023", "15024", 
+               "15025", "15028", "15029", "15030", 
+               "15031", "15033", "15034", "15035", 
+               "15036", "15037", "15038", "15039", 
+               "15044", "15046", "15050", "15053",
+               "15057", "15058", "15059", "15060",
+               "15061", "15065", "15068", "15069",
+               "15070", "15075", "15081", "15083",
+               "15084", "15089", "15091", "15092",
+               "15093", "15094", "15095", "15096",
+               "15099", "15100", "15103", "15104",
+               "15108", "15109", "15112", "15120",
+               "15121", "15122", "15125")
+
+# Create dummy for each county in ZMVM and get a subset of the
+# data for ZMVM only
+ssa_covid_ZMVM <- ssa_covid %>%
+  mutate(zmvm = ifelse(county_id %in% v_zmvm_id, 1, 0)) %>%
+  filter(zmvm == 1) %>%
+  mutate(entidad = case_when(zmvm == 1 ~ "ZMVM"), 
+         state = case_when(zmvm == 1 ~ "MCMA"), 
+         county_name_esp = case_when(zmvm == 1 ~ "ZMVM"), 
+         county_name_eng = case_when(zmvm == 1 ~ "MCMA"))
+
+ssa_data_ZMVM <- ssa_data %>%
+  mutate(zmvm = ifelse(county_id %in% v_zmvm_id, 1, 0)) %>%
+  filter(zmvm == 1) %>%
+  mutate(entidad = case_when(zmvm == 1 ~ "ZMVM"), 
+         state = case_when(zmvm == 1 ~ "MCMA"), 
+         county_name_esp = case_when(zmvm == 1 ~ "ZMVM"), 
+         county_name_eng = case_when(zmvm == 1 ~ "MCMA"))
 
 # Compare population 
 sum(unique(ssa_covid_ZMVM$population))
@@ -866,7 +723,7 @@ vent_data_ZMVM <- ssa_covid_ZMVM %>%
   mutate(cum_cases = cumsum(new_cases), 
          time_cases = c(0:(length(date_dx)-1)),
          var_outcome = "Ventilator",
-         var_resultado = "Intubado")
+         var_resultado = "Intubados")
 
 # Deaths 
 deaths_data_ZMVM <- ssa_covid_ZMVM %>% 
@@ -980,11 +837,11 @@ dim(df_covid_ssa_ZMVM)
 ####  Final data set for states and ZMVM  ####  
 #--------------------------------------------#
 
-df_covid_ssa_state_zmvm <- df_covid_ssa_state %>%
+df_covid_ssa_state <- df_covid_ssa_state %>%
   bind_rows(df_covid_ssa_ZMVM)
 
 # Add date stamp to data set
-df_covid_ssa_state_zmvm$time_stamp <- Sys.Date()
+df_covid_ssa_state$time_stamp <- Sys.Date()
 #df_covid_ssa_state$time_stamp <- "2020-05-31"
 
 
@@ -993,18 +850,18 @@ df_covid_ssa_state_zmvm$time_stamp <- Sys.Date()
 #--------------------------------------------#
 
 # Save complete and most updated data file 
-save(df_covid_ssa_state_zmvm,
+save(df_covid_ssa_state,
      file = "data/state/df_covid_ssa_state.Rdata")
 
 # Save file in csv format
-write.csv(df_covid_ssa_state_zmvm, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
+write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
           row.names = FALSE)
 
-#write.csv(df_covid_ssa_state_zmvm, "data/state/covid_ssa_state_2020-06-20.csv",
-#            row.names = FALSE)
+#write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-06-23.csv",
+#          row.names = FALSE)
 
 # Another option to save the file (just in case accents are not shown)
-#write.table(df_covid_ssa_state_zmvm, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
+#write.table(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
 #  row.names = FALSE, sep = ",")
 
 
