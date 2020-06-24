@@ -3,7 +3,10 @@
 ![Build Status](https://img.shields.io/github/stars/PADeCI/covid19-mx-data)
 ![Build Status](https://img.shields.io/github/license/PADeCI/covid19-mx-data)
 ![Build Status](https://img.shields.io/twitter/url?style=social)
-![alt text]()
+
+<p align="center">
+<img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/logo.png" alt="logo" width="200"/>
+</p> 
 
 # VERSIÓN EN ESPAÑOL 
 # Sobre este repositorio :open_book:
