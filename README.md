@@ -9,7 +9,7 @@
 </p> 
 
 _____
-# VERSIÓN EN ESPAÑOL: Datos del COVID-19 en Mexico 
+# VERSIÓN EN ESPAÑOL: Datos de COVID-19 en Mexico 
 # Sobre este repositorio :open_book:
 [PADeCI](https://twitter.com/PADeCI1) es un equipo de investigación interdisciplinario ubicado en Aguascalientes, México. Actualmente, uno de sus principales proyectos involucra el procesamiento, el análisis y la creación de datos sobre COVID-19 en México, necesarios para la toma de decisiones basada en evidencia en contextos de incertidumbre. Este repositorio corresponde a la primera etapa del análisis de datos: el proceso de limpieza. Los datos que son generados en esta etapa son la fuente primaria de información para el modelaje matemático, las proyecciones y las publicaciones de PADeCI. Siguiendo el principio científico de _transparencia_, cualquier persona interesada puede replicar el proceso de limpieza de datos hecho por el equipo de PADeCI, usando el contenido de este repositorio.
 
