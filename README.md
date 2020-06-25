@@ -86,7 +86,7 @@ Regina Isabel Medina       | [GitHub](https://github.com/RMedina19) | [Twitter](
 Fernando Alarid-Escudero   | [GitHub](https://github.com/feralaes) | [Twitter](https://twitter.com/feralaes) |
 
 # Licencia de uso :scroll:
-[MIT](LICENSE)
+El contenido de este repositorio debe utilizarse bajo las condiciones de la licencia [MIT](LICENSE).
 _____
 
 # Mexico's COVID-19 data (english version) 
