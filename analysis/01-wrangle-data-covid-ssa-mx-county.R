@@ -16,14 +16,13 @@
 #--------------------------------------------#
 
 library(tidyverse)
-# library(readxl)
 
 
 #--------------------------------------------#
 ####            Load data                 #### 
 #--------------------------------------------#
 
-ssa <- read.csv("data-raw/200604COVID19MEXICO.csv")
+ssa <- read.csv("data-raw/200623COVID19MEXICO.csv")
 load("data-raw/df_pop_county.Rdata")   # population and names
 
 #--------------------------------------------#
@@ -44,8 +43,6 @@ load("data-raw/df_pop_county.Rdata")   # population and names
 
 # Check that database confirms numbers in the public report
 table(ssa$RESULTADO)
-# Oficial report: 105680 COVID cases, 46659 suspects
-# In data Value 1: 105680; Value 3: 46659
 
 # Keep important variables only from ssa data
 ssa_data <- ssa %>%
@@ -125,16 +122,12 @@ table(ssa_data$entidad)
  
 # Create a variable = 1 if COVID-19 is positive
 ssa_data$covid <- ifelse(ssa_data$RESULTADO==1, 1, 0)
-# There must be 105680 observations = 1
 table(ssa_data$covid)
 
 # Subset the data for COVID-19 cases only
 ssa_covid <- subset(ssa_data, covid==1)
 
 # Format date variables as.Date() and create date_dx and date_sx variables
-table(ssa_covid$FECHA_INGRESO)
-table(ssa_covid$FECHA_SINTOMAS)
-table(ssa_covid$FECHA_DEF)
 ssa_covid$date_dx <- as.Date(ssa_covid$FECHA_INGRESO, format = "%Y-%m-%d")
 ssa_covid$date_sx <- as.Date(ssa_covid$FECHA_SINTOMAS, format = "%Y-%m-%d")
 ssa_covid$date_dead <- as.Date(ssa_covid$FECHA_DEF, format = "%Y-%m-%d")
@@ -165,7 +158,6 @@ table(ssa_covid$dead_ind) # Has to be the same as the official report
 # Create a variable = 1 to count the number of test by state later
 # and the date_dx variable in the complete data set from SSA
 ssa_data$test_ind <- 1
-table(ssa_data$FECHA_INGRESO)
 ssa_data$date_dx <- as.Date(ssa_data$FECHA_INGRESO, format = "%Y-%m-%d")
 table(ssa_data$date_dx)
 
@@ -194,6 +186,75 @@ ssa_data <- ssa_data %>%
   rename(entidad = "entidad.x")
 
 
+#------------------------------------------------------------------#
+#------------------------------------------------------------------#
+
+####  Work for ZMVM  ####
+#--------------------------------------------#
+####       Create the ZMVM category       ####   
+#--------------------------------------------#
+
+# Acronyms:
+# Zona Metropolitana del Valle de México (ZMVM)
+# Mexico City Metropolitan Area (MCMA)
+
+# Vector of ZMVM  county ids
+v_zmvm_id <- c("9002", "9003", "9004", "9005", "9006",
+               "9007", "9008", "9009", "9010", "9011",
+               "9012", "9013", "9014", "9015", "9016",
+               "9017", "13069",
+               "15002", "15009", "15010", "15011",
+               "15013", "15015", "15016", "15017", 
+               "15020", "15022", "15023", "15024", 
+               "15025", "15028", "15029", "15030", 
+               "15031", "15033", "15034", "15035", 
+               "15036", "15037", "15038", "15039", 
+               "15044", "15046", "15050", "15053",
+               "15057", "15058", "15059", "15060",
+               "15061", "15065", "15068", "15069",
+               "15070", "15075", "15081", "15083",
+               "15084", "15089", "15091", "15092",
+               "15093", "15094", "15095", "15096",
+               "15099", "15100", "15103", "15104",
+               "15108", "15109", "15112", "15120",
+               "15121", "15122", "15125")
+
+# Create dummy for each county in ZMVM and get a subset of the
+# data for ZMVM only
+ssa_covid_ZMVM <- ssa_covid %>%
+  mutate(zmvm = ifelse(county_id %in% v_zmvm_id, 1, 0)) %>%
+  filter(zmvm == 1) %>%
+  mutate(entidad = case_when(zmvm == 1 ~ "ZMVM"), 
+         state = case_when(zmvm == 1 ~ "MCMA"))
+
+ssa_data_ZMVM <- ssa_data %>%
+  mutate(zmvm = ifelse(county_id %in% v_zmvm_id, 1, 0)) %>%
+  filter(zmvm == 1) %>%
+  mutate(entidad = case_when(zmvm == 1 ~ "ZMVM"), 
+         state = case_when(zmvm == 1 ~ "MCMA"))
+
+# Compare population 
+sum(unique(ssa_covid_ZMVM$population))
+sum(unique(ssa_data_ZMVM$population))
+
+#------------------------------------------------#
+####    Add ZMVM state to the whole data      ####   
+#------------------------------------------------#
+
+# Remove variables that were added in the process and are no longer needed
+ssa_covid_ZMVM <- ssa_covid_ZMVM[-28]
+ssa_data_ZMVM <- ssa_data_ZMVM[-23]
+
+# Bind rows for ZMVM
+ssa_covid <- ssa_covid %>%
+  bind_rows(ssa_covid_ZMVM)
+ssa_data <- ssa_data %>%
+  bind_rows(ssa_data_ZMVM)
+
+#------------------------------------------------------------------#
+#------------------------------------------------------------------#
+
+
 #-------------------------------------------------#
 #### Data sets with output variables by county ####   
 #-------------------------------------------------#
@@ -205,7 +266,7 @@ ssa_data <- ssa_data %>%
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-# max_date <- as.Date("2020-06-04")
+# max_date <- as.Date("2020-06-23")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -285,7 +346,7 @@ vent_data <- ssa_covid %>%
   mutate(cum_cases = cumsum(new_cases), 
          time_cases = c(0:(length(date_dx)-1)),
          var_outcome = "Ventilator",
-         var_resultado = "Intubado")
+         var_resultado = "Intubados")
 
 # Deaths grouped by (country, state, county) and date_dead
 deaths_data <- ssa_covid %>% 
@@ -317,15 +378,6 @@ tests_data <- ssa_data %>%
          time_cases = c(0:(length(date_dx)-1)),
          var_outcome = "Tests",
          var_resultado = "Pruebas")
-
-# Just to double check we got the right numbers in everything
-sum(sx_data$new_cases)
-sum(dx_data$new_cases)
-sum(hosp_data$new_cases)
-sum(icu_data$new_cases)
-sum(vent_data$new_cases)
-sum(deaths_data$new_cases)
-sum(tests_data$new_cases)
 
 # Count number of observations
 dim(sx_data)
@@ -426,7 +478,7 @@ df_covid_ssa_county <- sx_full %>%
 
 # Add date stamp to data set
 df_covid_ssa_county$time_stamp <- Sys.Date()
-# df_covid_ssa_county$time_stamp <- "2020-06-04"
+# df_covid_ssa_county$time_stamp <- "2020-06-23"
 
 #--------------------------------------------#
 ####               Save data              ####  
@@ -439,7 +491,7 @@ save(df_covid_ssa_county,
 # Save file in csv format
 write.csv(df_covid_ssa_county, paste0("data/county/covid_ssa_county_",Sys.Date(),".csv"),
           row.names = FALSE)
-# write.csv(df_covid_ssa_county, "data/county/covid_ssa_county_2020-06-04.csv",
+# write.csv(df_covid_ssa_county, "data/county/covid_ssa_county_2020-06-23.csv",
 #            row.names = FALSE)
 
 
