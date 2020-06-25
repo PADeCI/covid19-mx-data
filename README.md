@@ -30,11 +30,13 @@ El repositorio incluye numerosas bases de datos (más detalles en la sección de
 Una vez seleccionada la base que se utilizará, es necesario abrirla en formato raw y copiar el url que aparece en el navegador. 
 
 <p align="center">
-<img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/tutorial1.png" alt="logo" width="200"/>
+<img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/tutorial1.png" alt="logo" width="700"/>
 </p> 
 
+
+
 <p align="center">
-<img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/tutorial2.png" alt="logo" width="200"/>
+<img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/tutorial2.png" alt="logo" width="700"/>
 </p> 
 
 
