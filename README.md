@@ -14,13 +14,13 @@ _____
 # Sobre este repositorio :open_book:
 [PADeCI](https://twitter.com/PADeCI1) es un equipo de investigación interdisciplinario ubicado en el [CIDE Región Centro](https://www.facebook.com/cideregioncentro) en Aguascalientes, México. Actualmente, uno de sus principales proyectos involucra el procesamiento, el análisis y la creación de datos sobre COVID-19 en México, necesarios para la toma de decisiones basada en evidencia en contextos de incertidumbre. Este repositorio ofrece datos de la propagación de la pandemia de COVID-19 en México, incluye información sobre el número de personas que se han sometido a la prueba de COVID-19, con síntomas (sospechosas), enfermas (confirmadas), hospitalizadas, fallecidas, en cuidados intensivos e intubadas. Los datos son abiertos para ser utilizados por cualquier persona, otorgando el crédito adecuado.
 
-Este repositorio corresponde a la primera etapa del análisis de datos: el proceso de limpieza. La información generada en esta etapa es la fuente primaria de información para el modelaje matemático, las proyecciones y las publicaciones de PADeCI. Además de ser una herramenta para la investigación, el contenido de este repositorio sirve para que cualquier persona interesada replique el proceso de limpieza de datos hecho por el equipo de PADeCI, siguiendo así a los principios científicos de _transparencia_ y _replicabilidad_. 
+Este repositorio corresponde a la primera etapa del análisis de datos: el proceso de limpieza. La información generada en esta etapa es la fuente primaria de información para el modelaje matemático, las proyecciones y las publicaciones de PADeCI. Además de ser una herramenta para la investigación, el contenido de este repositorio sirve para que cualquier persona interesada replique el proceso de limpieza de datos hecho por el equipo de PADeCI, siguiendo así los principios científicos de _transparencia_ y _replicabilidad_. 
 
 # Requisitos :computer:
 R version 3.6.2 (ésta es la versión recomendada para evitar errores en el código, también conocidos como _bugs_). 
 
 # Uso :inbox_tray:
-Cualquier persona puede replicar el trabajo de PADeCI, ya sea clonando este repositorio en su computadora o descargando archivos específicos. Los datos también se pueden utilizar sin necesidad de descargar, ni clonar el respositorio: basta con utilizar el url de la base de datos específica que se desea utilizar en formato raw, a continuación se presenta un ejemplo de cómo acceder a los datos usando este método.
+Cualquier persona puede utilizar los datos creados por PADeCI o replicar el proceso de limpieza, ya sea clonando este repositorio en su computadora o descargando archivos específicos. Los datos también se pueden utilizar sin necesidad de descargar, ni clonar el respositorio: basta con utilizar el url de la base de datos específica que se desea utilizar en formato raw, a continuación se presenta un ejemplo de cómo acceder a los datos usando este método.
 
 ## Ejemplo de uso de los datos (extracción directa del url con R)
 1. Seleccionar la base de interés 
@@ -30,11 +30,11 @@ El repositorio incluye numerosas bases de datos (más detalles en la sección de
 Una vez seleccionada la base que se utilizará, es necesario abrirla en formato raw y copiar el url que aparece en el navegador. 
 
 <p align="center">
-<img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/logo.png" alt="logo" width="300"/>
+<img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/tutorial1.png" alt="logo" width="200"/>
 </p> 
 
 <p align="center">
-<img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/logo.png" alt="logo" width="300"/>
+<img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/tutorial2.png" alt="logo" width="200"/>
 </p> 
 
 
