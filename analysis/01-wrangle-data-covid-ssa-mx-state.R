@@ -22,7 +22,7 @@ library(tidyverse)
 ####            Load data                 #### 
 #--------------------------------------------#
 
-ssa <- read.csv("data-raw/200628COVID19MEXICO.csv")
+ssa <- read.csv("data-raw/200629COVID19MEXICO.csv")
 load("data-raw/df_pop_state.Rdata")   # population for states
 # Data for ZMVM
 load("data-raw/df_pop_ZMVM.Rdata")   
@@ -841,8 +841,8 @@ df_covid_ssa_state <- df_covid_ssa_state %>%
   bind_rows(df_covid_ssa_ZMVM)
 
 # Add date stamp to data set
-#df_covid_ssa_state$time_stamp <- Sys.Date()
-df_covid_ssa_state$time_stamp <- "2020-06-27"
+df_covid_ssa_state$time_stamp <- Sys.Date()
+#df_covid_ssa_state$time_stamp <- "2020-06-27"
 
 
 #--------------------------------------------#
