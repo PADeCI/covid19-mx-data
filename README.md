@@ -29,7 +29,7 @@ El repositorio incluye numerosas bases de datos (más detalles en la sección de
 
 **2. Obtener la url para el formato raw de la base de datos**
 
-Una vez seleccionada la base que se utilizará, es necesario abrirla en formato raw y copiar el url que aparece en el navegador. 
+Una vez seleccionada la base que se utilizará, es necesario abrirla en formato raw (ésta es la versión en html para los documentos que son almacenados en GitHub) y copiar el url que aparece en el navegador. 
 
 <p align="center">
 <img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/tutorial1.png" alt="logo" width="700"/>
@@ -112,7 +112,7 @@ The repository includes several data bases (more detail can be found in the anal
 
 **2. Get the GitHub's url for the raw format of the data base**
 
-Once the data base is chosen, it is necessary to open the raw format provided by GitHub and copy the url from the web navigator.
+Once the data base is chosen, it is necessary to open the raw format provided by GitHub (this is an html version of all the documents that are stored at GitHub) and copy the url from the web navigator.
 
 <p align="center">
 <img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/tutorial1.png" alt="logo" width="700"/>
