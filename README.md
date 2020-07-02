@@ -23,11 +23,11 @@ R version 3.6.2 (ésta es la versión recomendada para evitar errores en el cód
 Cualquier persona puede utilizar los datos creados por PADeCI o replicar el proceso de limpieza, ya sea clonando este repositorio en su computadora o descargando archivos específicos. Los datos también se pueden utilizar sin necesidad de descargar, ni clonar el respositorio: basta con utilizar el url que GitHub provee de la base de datos específica que se desea utilizar en formato raw, a continuación se presenta un ejemplo de cómo acceder a los datos usando este método.
 
 ## Ejemplo de uso de los datos (extracción directa del url con R)
-1. Seleccionar la base de interés 
+**1. Seleccionar la base de interés**
 
 El repositorio incluye numerosas bases de datos (más detalles en la sección de análisis en el apartado de descripción de las carpetas). En este caso utilizaremos la base de casos COVID-19  desagregada a nivel municipal actualizada el 4 de junio de 2020. 
 
-2. Obtener la url para el formato raw de la base de datos 
+**2. Obtener la url para el formato raw de la base de datos**
 
 Una vez seleccionada la base que se utilizará, es necesario abrirla en formato raw y copiar el url que aparece en el navegador. 
 
@@ -42,14 +42,14 @@ Una vez seleccionada la base que se utilizará, es necesario abrirla en formato 
 </p> 
 
 
-3. Importar base de datos directo de la url 
+**3. Importar base de datos directo de la url**
 
 Se usa el siguiente comando para crear el objeto en R que contendrá la base, nótese que utiliza el url de la base tipo raw de GitHub del paso anterior. 
 
 ```r
 mi_base <- read.csv("https://raw.githubusercontent.com/PADeCI/covid19-mx-data/master/data/state/covid_ssa_state_2020-06-23.csv?token=AMIIVUNFFZ5DS5ZKVCAK3SC66PWQS")
 ```
-4. Explorar datos
+**4. Explorar datos**
 
 Para una exploración rápida de la base se puede utilizar el comando `head()` y para ver toda la base el comando `View()`. En este ejemplo sería: 
 
@@ -106,11 +106,11 @@ R version 3.6.2 (this version is recommended to avoid potential bugs)
 Any user can either clone this repository in its own computer or download specific files in order to replicate PADeCI's job. Data can also be accesed without the need of downloading the whole repository nor any file. It suffices with using the url of the raw format provided by GitHub of the data base of interest. A quick example of how to retrive data with the last method is shown below. 
 
 ## Use example (extracting data directly from a url)
-1. Select data base of interest
+**1. Select data base of interest**
 
 The repository includes several data bases (more detail can be found in the analysis subsection in the folder's description section). In this case, we will use the COVID-19 data base disaggregated at a county level, updated on June 4th, 2020. 
 
-2. Get the GitHub's url for the raw format of the data base
+**2. Get the GitHub's url for the raw format of the data base**
 
 Once the data base is chosen, it is necessary to open the raw format provided by GitHub and copy the url from the web navigator.
 
@@ -125,14 +125,14 @@ Once the data base is chosen, it is necessary to open the raw format provided by
 </p> 
 
 
-3. Import data base directly from the url 
+**3. Import data base directly from the url** 
 
 The following command is used to create and R object that will contain the data base, the GitHub's url retrived in the last step must be used.
 
 ```r
 my_data <- read.csv("https://raw.githubusercontent.com/PADeCI/covid19-mx-data/master/data/state/covid_ssa_state_2020-06-23.csv?token=AMIIVUNFFZ5DS5ZKVCAK3SC66PWQS")
 ```
-4. Explor data
+**4. Explore data**
 
 For a quick data exploration, the `head()` command  can be used; in order to see the whole data frame, `View()` command must be used. Following our example:
 
