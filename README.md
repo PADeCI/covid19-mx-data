@@ -76,7 +76,7 @@ A partir de este punto la persona puede decidir qué hacer con los datos y proce
 
 
 # Cómo citar este respositorio :handshake:
-En caso de utilizar los datos de este repositorio, favor de referenciar el trabajo de la siguiente manera: (Aquí se agregará el DOI generado por Zenodo) 
+En el próximo lanzamiento de código se proveerá de un DOI para citar este repositorio. 
 
 # Autoras y autores :writing_hand:
 
@@ -158,7 +158,7 @@ At this stage, the person can decide what to do with data and proceed with her o
   - It also includes Mexico City Metropolitan Area (MCMA) data
   
 # How to cite this repository :handshake:
-In case of using the respository's data, please cite the work using the following format: (Insert Zenodo's DOI link)  
+A DOI will be published in the next repository's release.
 
 # Authors :writing_hand:
 Yadira Peralta             | [GitHub](https://github.com/yadira-peralta) | [Twitter](https://twitter.com/YadiraPerTor) |
