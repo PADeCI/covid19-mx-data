@@ -5,7 +5,7 @@
 [![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
 <p align="center">
-<img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/logo.png" alt="logo" width="300"/>
+<img src = "https://github.com/PADeCI/covid19-mx-data/blob/master/logo.png" alt="foo" width="300">
 </p> 
 
 _____
