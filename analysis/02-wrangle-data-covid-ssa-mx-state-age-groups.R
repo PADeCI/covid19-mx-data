@@ -20,7 +20,7 @@ library(tidyverse)
 ####            Load data                 #### 
 #--------------------------------------------#
 
-ssa <- read.csv("data-raw/200623COVID19MEXICO.csv")
+ssa <- read.csv("data-raw/200713COVID19MEXICO.csv")
 load("data-raw/df_pop_state.Rdata")   # population for states
 # Data for ZMVM
 load("data-raw/df_pop_ZMVM.Rdata")   
