@@ -2,6 +2,6 @@ theme: jekyll-theme-slate
 title: Datos del Covid-19 en México 
 description: El repositorio covid19-mx-data contiene los datos recopilados, procesados y creados por PADeCI para el análisis de la expansión de la pandemia de Covid-19 en México.
 site_url: https://padeci.github.io/covid19-mx-data/
-ins:
+plugins:
   - jemoji
   
