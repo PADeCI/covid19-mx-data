@@ -105,7 +105,16 @@ ifelse(sum(tests_data$new_cases) == tests,"COINCIDE", "NO COINCIDE" )
 #--------------------------------------------#
 ####Create Data Frame and append new data ####  
 #--------------------------------------------#
-data_fr <- data.frame(date, confirmados, negativos, sospechosos, deaths,perc_hosp,hospitalizados, uci, intubados, tests)
+data_fr <- data.frame(date,
+                      confirmados = sum(dx_data$new_cases), 
+                      negativos, 
+                      sospechosos,
+                      deaths = sum(deaths_data$new_cases),
+                      perc_hosp,
+                      hospitalizados = sum(hosp_data$new_cases), 
+                      uci = sum(icu_data$new_cases), 
+                      intubados = sum(vent_data$new_cases), 
+                      tests = sum(tests_data$new_cases))
 appendWorksheet(wb, data_fr, sheet = 1)
 saveWorkbook(wb)
 
