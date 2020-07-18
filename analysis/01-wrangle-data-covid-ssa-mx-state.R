@@ -16,13 +16,14 @@
 #--------------------------------------------#
 
 library(tidyverse)
-
+library(data.table)
 
 #--------------------------------------------#
 ####            Load data                 #### 
 #--------------------------------------------#
+ssa <- fread("data-raw/200717COVID19MEXICO.csv",header=TRUE)
 
-ssa <- read.csv("data-raw/200716COVID19MEXICO.csv")
+#ssa <- read.csv("data-raw/200717COVID19MEXICO.csv")
 load("data-raw/df_pop_state.Rdata")   # population for states
 # Data for ZMVM
 load("data-raw/df_pop_ZMVM.Rdata")   
