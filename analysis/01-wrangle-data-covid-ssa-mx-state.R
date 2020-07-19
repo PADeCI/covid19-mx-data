@@ -21,7 +21,7 @@ library(data.table)
 #--------------------------------------------#
 ####            Load data                 #### 
 #--------------------------------------------#
-ssa <- fread("data-raw/200717COVID19MEXICO.csv",header=TRUE)
+ssa <- fread("data-raw/200718COVID19MEXICO.csv",header=TRUE)
 
 #ssa <- read.csv("data-raw/200717COVID19MEXICO.csv")
 load("data-raw/df_pop_state.Rdata")   # population for states
@@ -855,11 +855,11 @@ save(df_covid_ssa_state,
      file = "data/state/df_covid_ssa_state.Rdata")
 
 # Save file in csv format
-write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
-         row.names = FALSE)
+# write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
+#          row.names = FALSE)
 
-# write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-06-27.csv",
-#       row.names = FALSE)
+ write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-07-18.csv",
+       row.names = FALSE)
 
 # Another option to save the file (just in case accents are not shown)
 #write.table(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
