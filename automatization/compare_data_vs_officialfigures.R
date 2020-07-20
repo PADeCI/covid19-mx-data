@@ -29,7 +29,7 @@ wb <- loadWorkbook("data-validation/bitacora_historica_datos_abiertos.xlsx")
 #--------------------------------------------#
 
 date <- Sys.Date()
-#date <- as.Date("2020-06-27")
+#date <- as.Date("2020-07-18")
 date <- format(date, format="%Y-%m-%d")
 
 
@@ -143,7 +143,7 @@ dim(tests_data)
 dim(sx_data_nal)
 dim(dx_data_nal)
 dim(hosp_data_nal)
-dim(icu_d <- ata_nal)
+dim(icu_d <- data_nal)
 dim(vent_data_nal)
 dim(deaths_data_nal)
 dim(tests_data_nal)
