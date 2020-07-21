@@ -22,6 +22,7 @@ library("XLConnect")
 ####             Read xlsx                ####  
 #--------------------------------------------#
 wb <- loadWorkbook("data-validation/bitacora_historica_datos_abiertos.xlsx")
+#ssa <- fread("data/state/covid_ssa_state_2020-07-17.csv",header=TRUE)
 
 
 #--------------------------------------------#
@@ -143,12 +144,10 @@ dim(tests_data)
 dim(sx_data_nal)
 dim(dx_data_nal)
 dim(hosp_data_nal)
-dim(icu_d <- data_nal)
+dim(icu_data_nal)
 dim(vent_data_nal)
 dim(deaths_data_nal)
 dim(tests_data_nal)
-
-
 dim(df_covid_ssa_ZMVM)
 
 
