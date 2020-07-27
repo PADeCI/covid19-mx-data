@@ -21,7 +21,7 @@ library(data.table)
 #--------------------------------------------#
 ####            Load data                 #### 
 #--------------------------------------------#
-ssa <- fread("data-raw/200723COVID19MEXICO.csv",header=TRUE)
+ssa <- fread("data-raw/200725COVID19MEXICO.csv",header=TRUE)
 
 #ssa <- read.csv("data-raw/200717COVID19MEXICO.csv")
 load("data-raw/df_pop_state.Rdata")   # population for states
@@ -64,7 +64,7 @@ ssa_data <- ssa_data %>%
                            ENTIDAD_RES==6 ~ "Colima",
                            ENTIDAD_RES==7 ~ "Chiapas",
                            ENTIDAD_RES==8 ~ "Chihuahua",
-                           ENTIDAD_RES==9 ~ "Mexico City",
+                           ENTIDAD_RES==9 ~ "Mexico C]ity",
                            ENTIDAD_RES==10 ~ "Durango",
                            ENTIDAD_RES==11 ~ "Guanajuato",
                            ENTIDAD_RES==12 ~ "Guerrero",
@@ -177,8 +177,8 @@ table(ssa_data$date_dx)
 # time_cases: time (number of days where 0 = day of first var_outcome)
 
 # Date until which we create the sequence
-max_date <- Sys.Date()
-#max_date <- as.Date("2020-07-19")
+#max_date <- Sys.Date()
+max_date <- as.Date("2020-07-25")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -854,12 +854,12 @@ df_covid_ssa_state$time_stamp <- Sys.Date()
 # save(df_covid_ssa_state,
 #      file = "data/state/df_covid_ssa_state.Rdata")
 # 
-# # Save file in csv format
-write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
-         row.names = FALSE)
+# # # Save file in csv format
+# write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
+#          row.names = FALSE)
 
- # write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-07-18.csv",
- #       row.names = FALSE)
+write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-07-25.csv",
+      row.names = FALSE)
 
 # Another option to save the file (just in case accents are not shown)
 #write.table(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
