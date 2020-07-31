@@ -16,13 +16,14 @@
 #--------------------------------------------#
 
 library(tidyverse)
-
+library(data.table)
 
 #--------------------------------------------#
 ####            Load data                 #### 
 #--------------------------------------------#
 
-ssa <- read.csv("data-raw/200713COVID19MEXICO.csv")
+#ssa <- read.csv("data-raw/200713COVID19MEXICO.csv")
+ssa <- fread("data-raw/200729COVID19MEXICO.csv",header=TRUE)
 load("data-raw/df_pop_county.Rdata")   # population and names
 
 #--------------------------------------------#
@@ -266,7 +267,7 @@ ssa_data <- ssa_data %>%
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-# max_date <- as.Date("2020-06-23")
+# max_date <- as.Date("2020-07-29")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -478,7 +479,7 @@ df_covid_ssa_county <- sx_full %>%
 
 # Add date stamp to data set
 df_covid_ssa_county$time_stamp <- Sys.Date()
-# df_covid_ssa_county$time_stamp <- "2020-06-23"
+# df_covid_ssa_county$time_stamp <- "2020-07-29"
 
 #--------------------------------------------#
 ####               Save data              ####  
@@ -491,7 +492,7 @@ save(df_covid_ssa_county,
 # Save file in csv format
 write.csv(df_covid_ssa_county, paste0("data/county/covid_ssa_county_",Sys.Date(),".csv"),
           row.names = FALSE)
-# write.csv(df_covid_ssa_county, "data/county/covid_ssa_county_2020-06-23.csv",
+# write.csv(df_covid_ssa_county, "data/county/covid_ssa_county_2020-07-29.csv",
 #            row.names = FALSE)
 
 

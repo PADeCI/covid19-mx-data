@@ -15,12 +15,14 @@
 #--------------------------------------------#
 
 library(tidyverse)
+library(data.table)
 
 #--------------------------------------------#
 ####            Load data                 #### 
 #--------------------------------------------#
 
-ssa <- read.csv("data-raw/200713COVID19MEXICO.csv")
+#ssa <- read.csv("data-raw/200713COVID19MEXICO.csv")
+ssa <- fread("data-raw/200729COVID19MEXICO.csv",header=TRUE)
 load("data-raw/df_pop_state.Rdata")   # population for states
 # Data for ZMVM
 load("data-raw/df_pop_ZMVM.Rdata")   
@@ -277,10 +279,10 @@ sum(unique(ssa_data_ZMVM$population))
 #------------------------------------------------#
 
 # Remove variables that were added in the process and are no longer needed
-ssa_covid <- ssa_covid[1:22]
-ssa_covid_ZMVM <- ssa_covid_ZMVM[1:22]
-ssa_data <- ssa_data[1:17]
-ssa_data_ZMVM <- ssa_data_ZMVM[1:17]
+ssa_covid <- ssa_covid[,1:22]
+ssa_covid_ZMVM <- ssa_covid_ZMVM[,1:22]
+ssa_data <- ssa_data[,1:17]
+ssa_data_ZMVM <- ssa_data_ZMVM[,1:17]
 
 # Bind rows for ZMVM
 ssa_covid <- ssa_covid %>%
@@ -303,7 +305,7 @@ ssa_data <- ssa_data %>%
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-#max_date <- as.Date("2020-06-23")
+#max_date <- as.Date("2020-07-29")
 
 # Symptomatic observations grouped by (country, state, county, age_groups) 
 # and date_sx
@@ -640,7 +642,7 @@ df_covid_ssa_state_age_groups <- sx_full %>%
 
 # Add date stamp to data set
 df_covid_ssa_state_age_groups$time_stamp <- Sys.Date()
-#df_covid_ssa_state_age_groups$time_stamp <- "2020-06-23"
+#df_covid_ssa_state_age_groups$time_stamp <- "2020-07-29"
 
 
 #--------------------------------------------#
@@ -655,7 +657,7 @@ save(df_covid_ssa_state_age_groups,
 write.csv(df_covid_ssa_state_age_groups, paste0("data/state_age_groups/covid_ssa_state_age_groups_",Sys.Date(),".csv"),
           row.names = FALSE)
 
-#write.csv(df_covid_ssa_state_age_groups, "data/state_age_groups/covid_ssa_state_age_groups_2020-06-23.csv",
+#write.csv(df_covid_ssa_state_age_groups, "data/state_age_groups/covid_ssa_state_age_groups_2020-07-29.csv",
 #          row.names = FALSE)
 
 # Another option to save the file (just in case accents are not shown)
