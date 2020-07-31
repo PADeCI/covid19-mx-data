@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 library(DT)
 ```
-
+ 
 ### Descripción
 
 El siguiente documento expone los resultados que se obtuvieron del tablero de la página <https://coronavirus.gob.mx/datos/> y el tratámiento de las base de datos públicadas diariamente en la página <https://www.gob.mx/salud/documentos/datos-abiertos-152127> .<br>
