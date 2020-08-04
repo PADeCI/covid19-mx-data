@@ -17,8 +17,8 @@ url = 'https://coronavirus.gob.mx/datos/Overview/info/getInfo.php'
 
 #Siguiente dia, siguiente tupla. 
 #Leemos nuestros dataFrame ya hecho
-#DF_temp = pd.read_excel("/Users/marianafernandez/Documents/COSMO/covid19-mx-Data/data-raw/BaseSSA_"+ timestr +".csv")
-DF_temp = pd.read_excel("/Users/marianafernandez/Documents/COSMO/covid19-mx-data/data-validation/bitacora_historica_tablero_oficial.xlsx")
+#DF_temp = pd.read_excel("/Users/Documents/COSMO/covid19-mx-Data/data-raw/BaseSSA_"+ timestr +".csv")
+DF_temp = pd.read_excel("/Users/Documents/COSMO/covid19-mx-data/data-validation/bitacora_historica_tablero_oficial.xlsx")
 
 DF_temp
 
@@ -62,7 +62,7 @@ DF_temp = DF_temp.drop('Unnamed: 0', 1)
 
 
 #DF_temp.to_excel("BaseSSA_"+ timestr +".csv", encoding="utf-8")
-direccion = "/Users/marianafernandez/Documents/COSMO/covid19-mx-data/data-validation/"
+direccion = "/Users/Documents/COSMO/covid19-mx-data/data-validation/"
 DF_temp.to_excel(direccion +"bitacora_historica_tablero_oficial" + ".xlsx", sheet_name='out_vars',encoding="utf-8")
 
 
