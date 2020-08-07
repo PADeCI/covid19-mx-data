@@ -1,14 +1,15 @@
-###########################################################
-#            COVID-19 Mexico, Open Data from SSA          #
-#           Data                                          #
-#                                                         #
-# Authors:                                                #
-#         PaDeCI                                          #
-#         marianafdz465                                   #
-#                                                         # 
-# May   2020                                              #
-###########################################################
-
+##************************************************************************
+## Script Name: 
+## Purpose:         
+## 
+##
+## Created:                               
+## Authors: Mariana Fernández 
+##          
+## GitHub: marianafdz465  
+##
+##
+##************************************************************************
 
 
 #--------------------------------------------#
@@ -62,6 +63,7 @@ table(ssa_covid$icu_ind)
 #Intubado
 indicator_intu <- table(ssa_covid$INTUBADO) # 1 = sí
 indicator_intu <- as.vector(indicator_intu)
+
 intubados <- indicator_intu[1]
 
 #Check intubados
@@ -91,6 +93,7 @@ ifelse(sum(hosp_data$new_cases) == hospitalizados, "COINCIDE", "NO COINCIDE")
 
 #UCI
 ifelse(sum(icu_data$new_cases) == uci, "COINCIDE", "NO COINCIDE")
+
 
 #Intubados
 ifelse(sum(vent_data$new_cases) == intubados, "COINCIDE", "NO COINCIDE" )
@@ -148,6 +151,7 @@ dim(icu_data_nal)
 dim(vent_data_nal)
 dim(deaths_data_nal)
 dim(tests_data_nal)
+
 dim(df_covid_ssa_ZMVM)
 
 
