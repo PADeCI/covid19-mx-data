@@ -64,7 +64,7 @@ ssa_data <- ssa_data %>%
                            ENTIDAD_RES==6 ~ "Colima",
                            ENTIDAD_RES==7 ~ "Chiapas",
                            ENTIDAD_RES==8 ~ "Chihuahua",
-                           ENTIDAD_RES==9 ~ "Mexico C]ity",
+                           ENTIDAD_RES==9 ~ "Mexico City",
                            ENTIDAD_RES==10 ~ "Durango",
                            ENTIDAD_RES==11 ~ "Guanajuato",
                            ENTIDAD_RES==12 ~ "Guerrero",
@@ -177,8 +177,8 @@ table(ssa_data$date_dx)
 # time_cases: time (number of days where 0 = day of first var_outcome)
 
 # Date until which we create the sequence
-max_date <- Sys.Date()
-#max_date <- as.Date("2020-08-16")
+#max_date <- Sys.Date()
+max_date <- as.Date("2020-08-17")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -843,8 +843,8 @@ df_covid_ssa_state <- df_covid_ssa_state %>%
   bind_rows(df_covid_ssa_ZMVM)
 
 # Add date stamp to data set
-df_covid_ssa_state$time_stamp <- Sys.Date()
-#df_covid_ssa_state$time_stamp <- "2020-08-16"
+#df_covid_ssa_state$time_stamp <- Sys.Date()
+df_covid_ssa_state$time_stamp <- "2020-08-17"
 
 
 #--------------------------------------------#
