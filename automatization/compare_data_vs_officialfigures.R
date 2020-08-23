@@ -30,8 +30,8 @@ wb <- loadWorkbook("data-validation/bitacora_historica_datos_abiertos.xlsx")
 ####        Append new data              ####  
 #--------------------------------------------#
 
-date <- Sys.Date()
-#date <- as.Date("2020-08-19")
+#date <- Sys.Date()
+date <- as.Date("2020-08-22")
 date <- format(date, format="%Y-%m-%d")
 
 
