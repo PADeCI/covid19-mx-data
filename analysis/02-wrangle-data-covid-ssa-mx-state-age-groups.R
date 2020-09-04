@@ -22,7 +22,7 @@ library(data.table)
 #--------------------------------------------#
 
 #ssa <- read.csv("data-raw/200713COVID19MEXICO.csv")
-ssa <- fread("data-raw/200729COVID19MEXICO.csv",header=TRUE)
+ssa <- fread("data-raw/200903COVID19MEXICO.csv",header=TRUE)
 load("data-raw/df_pop_state.Rdata")   # population for states
 # Data for ZMVM
 load("data-raw/df_pop_ZMVM.Rdata")   
@@ -305,7 +305,7 @@ ssa_data <- ssa_data %>%
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-#max_date <- as.Date("2020-07-29")
+#max_date <- as.Date("2020-09-03")
 
 # Symptomatic observations grouped by (country, state, county, age_groups) 
 # and date_sx
@@ -642,7 +642,7 @@ df_covid_ssa_state_age_groups <- sx_full %>%
 
 # Add date stamp to data set
 df_covid_ssa_state_age_groups$time_stamp <- Sys.Date()
-#df_covid_ssa_state_age_groups$time_stamp <- "2020-07-29"
+#df_covid_ssa_state_age_groups$time_stamp <- "2020-09-03"
 
 
 #--------------------------------------------#
@@ -657,7 +657,7 @@ save(df_covid_ssa_state_age_groups,
 write.csv(df_covid_ssa_state_age_groups, paste0("data/state_age_groups/covid_ssa_state_age_groups_",Sys.Date(),".csv"),
           row.names = FALSE)
 
-#write.csv(df_covid_ssa_state_age_groups, "data/state_age_groups/covid_ssa_state_age_groups_2020-07-29.csv",
+# write.csv(df_covid_ssa_state_age_groups, "data/state_age_groups/covid_ssa_state_age_groups_2020-09-03.csv",
 #          row.names = FALSE)
 
 # Another option to save the file (just in case accents are not shown)
