@@ -31,7 +31,7 @@ wb <- loadWorkbook("data-validation/bitacora_historica_datos_abiertos.xlsx")
 #--------------------------------------------#
 
 date <- Sys.Date()
-#date <- as.Date("2020-08-29")
+date <- as.Date("2020-09-06")
 date <- format(date, format="%Y-%m-%d")
 
 
@@ -47,6 +47,7 @@ sospechosos <- resultado[3]
 indicator_hosp <- table(ssa_covid$TIPO_PACIENTE) # 2 = hospitalizado
 indicator_hosp <- as.vector(indicator_hosp)
 hospitalizados <- indicator_hosp[2]
+
 
 #Porcentaje hospitalizados
 perc_hosp <- (hospitalizados / confirmados) * 100

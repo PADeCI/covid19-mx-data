@@ -21,7 +21,7 @@ library(data.table)
 #--------------------------------------------#
 ####            Load data                 #### 
 #--------------------------------------------#
-ssa <- fread("data-raw/200904COVID19MEXICO.csv",header=TRUE)
+ssa <- fread("data-raw/200907COVID19MEXICO.csv",header=TRUE)
 #ssa <- read.csv("data-raw/200717COVID19MEXICO.csv")
 
 load("data-raw/df_pop_state.Rdata")   # population for states
@@ -121,9 +121,9 @@ ssa_data <- ssa_data %>%
                              ENTIDAD_RES==31 ~ "Yucatán",
                              ENTIDAD_RES==32 ~ "Zacatecas"))
 # Check that cases are well-named (check with catalog as well)
-table(ssa_data$ENTIDAD_RES)
-table(ssa_data$state)
-table(ssa_data$entidad)
+#table(ssa_data$ENTIDAD_RES)
+#table(ssa_data$state)
+#table(ssa_data$entidad)
  
 # Create a variable = 1 if COVID-19 is positive
 ssa_data$covid <- ifelse(ssa_data$RESULTADO == 1, 1, 0)
@@ -178,7 +178,7 @@ table(ssa_data$date_dx)
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-#max_date <- as.Date("2020-08-29")
+#max_date <- as.Date("2020-09-06")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -302,14 +302,14 @@ sum(deaths_data$new_cases)
 sum(tests_data$new_cases)
 
 # Count number of observations
-dim(sx_data)
-dim(dx_data)
-dim(hosp_data)
-
-dim(icu_data)
-dim(vent_data)
-dim(deaths_data)
-dim(tests_data)
+# dim(sx_data)
+# dim(dx_data)
+# dim(hosp_data)
+# 
+# dim(icu_data)
+# dim(vent_data)
+# dim(deaths_data)
+# dim(tests_data)
 
 #------------------------------------------------#
 ####    National data for output variables    ####   
@@ -437,23 +437,23 @@ tests_data_nal <- ssa_data %>%
          var_resultado = "Pruebas")
 
 # Just to double check we got the right numbers in everything
-sum(sx_data_nal$new_cases)
-sum(dx_data_nal$new_cases)
-sum(hosp_data_nal$new_cases)
-sum(icu_data_nal$new_cases)
-sum(vent_data_nal$new_cases)
-sum(deaths_data_nal$new_cases)
-sum(tests_data_nal$new_cases)
-
-# Count number of observations
-dim(sx_data_nal)
-dim(dx_data_nal)
-dim(hosp_data_nal)
-dim(icu_data_nal)
-dim(vent_data_nal)
-dim(deaths_data_nal)
-dim(tests_data_nal)
-
+# sum(sx_data_nal$new_cases)
+# sum(dx_data_nal$new_cases)
+# sum(hosp_data_nal$new_cases)
+# sum(icu_data_nal$new_cases)
+# sum(vent_data_nal$new_cases)
+# sum(deaths_data_nal$new_cases)
+# sum(tests_data_nal$new_cases)
+# 
+# # Count number of observations
+# dim(sx_data_nal)
+# dim(dx_data_nal)
+# dim(hosp_data_nal)
+# dim(icu_data_nal)
+# dim(vent_data_nal)
+# dim(deaths_data_nal)
+# dim(tests_data_nal)
+# 
 
 
 #------------------------------------------------#
@@ -845,7 +845,7 @@ df_covid_ssa_state <- df_covid_ssa_state %>%
 
 # Add date stamp to data set
 df_covid_ssa_state$time_stamp <- Sys.Date()
-#df_covid_ssa_state$time_stamp <- "2020-08-29"
+df_covid_ssa_state$time_stamp <- "2020-09-07"
 
 
 #--------------------------------------------#
@@ -860,7 +860,7 @@ save(df_covid_ssa_state,
 write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
          row.names = FALSE)
 
-# write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-08-29.csv",
+# write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-09-06.csv",
 #            row.names = FALSE)
 
 
