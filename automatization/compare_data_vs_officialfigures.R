@@ -31,7 +31,7 @@ wb <- loadWorkbook("data-validation/bitacora_historica_datos_abiertos.xlsx")
 #--------------------------------------------#
 
 date <- Sys.Date()
-date <- as.Date("2020-09-06")
+date <- as.Date("2020-09-08")
 date <- format(date, format="%Y-%m-%d")
 
 
@@ -99,6 +99,7 @@ ifelse(sum(icu_data$new_cases) == uci, "COINCIDE", "NO COINCIDE")
 
 #Intubados
 ifelse(sum(vent_data$new_cases) == intubados, "COINCIDE", "NO COINCIDE" )
+
 
 #Muertes
 ifelse(sum(deaths_data$new_cases) == deaths,"COINCIDE", "NO COINCIDE" )
