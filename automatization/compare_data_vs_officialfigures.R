@@ -31,7 +31,7 @@ wb <- loadWorkbook("data-validation/bitacora_historica_datos_abiertos.xlsx")
 #--------------------------------------------#
 
 date <- Sys.Date()
-#date <- as.Date("2020-09-08")
+date <- as.Date("2020-09-13")
 date <- format(date, format="%Y-%m-%d")
 
 
