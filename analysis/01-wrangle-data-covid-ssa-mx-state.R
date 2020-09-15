@@ -21,7 +21,7 @@ library(data.table)
 #--------------------------------------------#
 ####            Load data                 #### 
 #--------------------------------------------#
-ssa <- fread("data-raw/200913COVID19MEXICO.csv",header=TRUE)
+ssa <- fread("data-raw/200914COVID19MEXICO.csv",header=TRUE)
 #ssa <- read.csv("data-raw/200717COVID19MEXICO.csv")
 
 load("data-raw/df_pop_state.Rdata")   # population for states
@@ -178,7 +178,7 @@ table(ssa_data$date_dx)
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-max_date <- as.Date("2020-09-13")
+#max_date <- as.Date("2020-09-13")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx

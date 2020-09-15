@@ -23,7 +23,7 @@ Plataforma oficial del Gobierno de México desarrollada por el equipo del Centro
 
 ```{r include=FALSE}
 library("readxl")
-my_data <- read_excel("/Users/marianafernandez/Documents/COSMO/covid19-mx-data/data-validation/bitacora_historica_tablero_oficial.xlsx")
+my_data <- read_excel("../data-validation/bitacora_historica_tablero_oficial.xlsx")
 ```
 
 
@@ -48,7 +48,7 @@ El equipo de PADeCI realiza diariamente el tratamiento de los datos abiertos pub
 
 ```{r include=FALSE}
 library("readxl")
-my_data <- read_excel("/Users/marianafernandez/Documents/COSMO/covid19-mx-data/data-validation/bitacora_historica_datos_abiertos.xlsx")
+my_data <- read_excel("../data-validation/bitacora_historica_datos_abiertos.xlsx")
 ```
 
 
