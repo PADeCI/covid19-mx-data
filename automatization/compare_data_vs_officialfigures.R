@@ -31,7 +31,7 @@ wb <- loadWorkbook("data-validation/bitacora_historica_datos_abiertos.xlsx")
 #--------------------------------------------#
 
 date <- Sys.Date()
-date <- as.Date("2020-09-20")
+#date <- as.Date("2020-09-20")
 date <- format(date, format="%Y-%m-%d")
 
 
@@ -65,7 +65,6 @@ table(ssa_covid$icu_ind)
 indicator_intu <- table(ssa_covid$INTUBADO) # 1 = sí
 indicator_intu <- as.vector(indicator_intu)
 intubados <- indicator_intu[1]
-
 
 #Check intubados
 table(ssa_covid$vent_ind)

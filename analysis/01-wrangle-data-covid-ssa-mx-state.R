@@ -21,7 +21,7 @@ library(data.table)
 #--------------------------------------------#
 ####            Load data                 #### 
 #--------------------------------------------#
-ssa <- fread("data-raw/200920COVID19MEXICO.csv",header=TRUE)
+ssa <- fread("data-raw/200921COVID19MEXICO.csv",header=TRUE)
 #ssa <- read.csv("data-raw/200717COVID19MEXICO.csv")
 
 load("data-raw/df_pop_state.Rdata")   # population for states
@@ -177,8 +177,8 @@ table(ssa_data$date_dx)
 # time_cases: time (number of days where 0 = day of first var_outcome)
 
 # Date until which we create the sequence
-#max_date <- Sys.Date()
-max_date <- as.Date("2020-09-20")
+max_date <- Sys.Date()
+#max_date <- as.Date("2020-09-20")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -860,8 +860,8 @@ save(df_covid_ssa_state,
 write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
          row.names = FALSE)
 
-write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-09-20.csv",
-            row.names = FALSE)
+# write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-09-20.csv",
+#             row.names = FALSE)
 
 
 # Another option to save the file (just in case accents are not shown)
