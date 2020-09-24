@@ -72,6 +72,7 @@ table(ssa_covid$vent_ind)
 #Dead
 indicator_deaths <- table(ssa_covid$dead_ind) # Has to be the same as the official report
 
+
 indicator_deaths <- as.vector(indicator_deaths)
 deaths <- indicator_deaths[2]
 
