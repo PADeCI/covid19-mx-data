@@ -21,7 +21,7 @@ library(data.table)
 #--------------------------------------------#
 ####            Load data                 #### 
 #--------------------------------------------#
-ssa <- fread("data-raw/200927COVID19MEXICO.csv",header=TRUE)
+ssa <- fread("data-raw/200928COVID19MEXICO.csv",header=TRUE)
 #ssa <- read.csv("data-raw/200717COVID19MEXICO.csv")
 
 load("data-raw/df_pop_state.Rdata")   # population for states
@@ -177,8 +177,8 @@ table(ssa_data$date_dx)
 # time_cases: time (number of days where 0 = day of first var_outcome)
 
 # Date until which we create the sequence
-#max_date <- Sys.Date()
-max_date <- as.Date("2020-09-27")
+max_date <- Sys.Date()
+#max_date <- as.Date("2020-09-27")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -845,7 +845,7 @@ df_covid_ssa_state <- df_covid_ssa_state %>%
 
 # Add date stamp to data set
 df_covid_ssa_state$time_stamp <- Sys.Date()
-df_covid_ssa_state$time_stamp <- "2020-09-27"
+#df_covid_ssa_state$time_stamp <- "2020-09-27"
 
 
 #--------------------------------------------#
