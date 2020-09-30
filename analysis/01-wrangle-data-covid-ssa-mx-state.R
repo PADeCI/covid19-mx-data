@@ -21,7 +21,7 @@ library(data.table)
 #--------------------------------------------#
 ####            Load data                 #### 
 #--------------------------------------------#
-ssa <- fread("data-raw/200928COVID19MEXICO.csv",header=TRUE)
+ssa <- fread("data-raw/200929COVID19MEXICO.csv",header=TRUE)
 #ssa <- read.csv("data-raw/200717COVID19MEXICO.csv")
 
 load("data-raw/df_pop_state.Rdata")   # population for states
