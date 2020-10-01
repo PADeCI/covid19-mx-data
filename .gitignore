@@ -7,7 +7,7 @@
 */.ipynb_checkpoints/*
 
 #### CSV FILE ###
-./dat-raw/*.csv
+/dat-raw/*.csv
 
 # Remove previous ipynb_checkpoints
 #   git rm -r .ipynb_checkpoints/
