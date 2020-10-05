@@ -30,7 +30,7 @@ aut_date <- paste(date, "COVID19MEXICO.csv",sep="")
 path_csv_file <- file.path("data-raw", aut_date)
 
 ssa <- fread(path_csv_file,header=TRUE)
-#ssa <- fread("data-raw/200930COVID19MEXICO.csv",header=TRUE)
+ssa <- fread("data-raw/201004COVID19MEXICO.csv",header=TRUE)
 #ssa <- read.csv("data-raw/200717COVID19MEXICO.csv")
 
 load("data-raw/df_pop_state.Rdata")   # population for states
@@ -187,7 +187,7 @@ table(ssa_data$date_dx)
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-#max_date <- as.Date("2020-09-27")
+max_date <- as.Date("2020-10-04")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -854,7 +854,7 @@ df_covid_ssa_state <- df_covid_ssa_state %>%
 
 # Add date stamp to data set
 df_covid_ssa_state$time_stamp <- Sys.Date()
-#df_covid_ssa_state$time_stamp <- "2020-09-27"
+df_covid_ssa_state$time_stamp <- "2020-10-04"
 
 
 #--------------------------------------------#
@@ -869,8 +869,8 @@ save(df_covid_ssa_state,
 write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
          row.names = FALSE)
 # 
-# write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-09-27.csv",
-#             row.names = FALSE)
+write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-10-04.csv",
+            row.names = FALSE)
 
 
 # Another option to save the file (just in case accents are not shown)
