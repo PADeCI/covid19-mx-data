@@ -23,14 +23,14 @@ library(data.table)
 #--------------------------------------------#
 
 date <- Sys.Date()
-#date <- as.Date("2020-09-27")
+#date <- as.Date("2020-10-06")
 date <- format(date, format="%y%m%d")
 
 aut_date <- paste(date, "COVID19MEXICO.csv",sep="")
 path_csv_file <- file.path("data-raw", aut_date)
 
 ssa <- fread(path_csv_file,header=TRUE)
-#ssa <- fread("data-raw/201004COVID19MEXICO.csv",header=TRUE)
+#ssa1 <- fread("data-raw/201007COVID19MEXICO.csv",header=TRUE)
 #ssa <- read.csv("data-raw/200717COVID19MEXICO.csv")
 
 load("data-raw/df_pop_state.Rdata")   # population for states
@@ -56,12 +56,16 @@ df_pop_state_2020 <- df_pop_state %>%
 #--------------------------------------------#
 
 # Check that database confirms numbers in the public report
-table(ssa$RESULTADO)
+table(ssa$RESULTADO_LAB)
 
 # Keep important variables only from ssa data
+# ssa_data <- ssa %>%
+#   select(ENTIDAD_RES, MUNICIPIO_RES, FECHA_INGRESO, FECHA_SINTOMAS,
+#          FECHA_DEF, EDAD, SEXO, TIPO_PACIENTE, INTUBADO, UCI, RESULTADO)
+
 ssa_data <- ssa %>%
-  select(ENTIDAD_RES, MUNICIPIO_RES, FECHA_INGRESO, FECHA_SINTOMAS, 
-         FECHA_DEF, EDAD, SEXO, TIPO_PACIENTE, INTUBADO, UCI, RESULTADO)
+  select(ENTIDAD_RES, MUNICIPIO_RES, FECHA_INGRESO, FECHA_SINTOMAS,
+         FECHA_DEF, EDAD, SEXO, TIPO_PACIENTE, INTUBADO, UCI, RESULTADO_LAB)
 
 # Naming the values of the ENTIDAD_RES variable in english and spanish
 ssa_data <- ssa_data %>%
@@ -130,12 +134,15 @@ ssa_data <- ssa_data %>%
                              ENTIDAD_RES==31 ~ "Yucatán",
                              ENTIDAD_RES==32 ~ "Zacatecas"))
 # Check that cases are well-named (check with catalog as well)
-#table(ssa_data$ENTIDAD_RES)
-#table(ssa_data$state)
-#table(ssa_data$entidad)
+table(ssa_data$ENTIDAD_RES)
+table(ssa_data$state)
+table(ssa_data$entidad)
  
 # Create a variable = 1 if COVID-19 is positive
-ssa_data$covid <- ifelse(ssa_data$RESULTADO == 1, 1, 0)
+#ssa_data$covid <- ifelse(ssa_data$RESULTADO == 1, 1, 0)
+#ssa_data$covid <- ifelse(ssa_data$CLASIFICACION_FINAL == 1, 1, 0)
+ssa_data$covid <- ifelse(ssa_data$RESULTADO_LAB == 1, 1, 0)
+
 table(ssa_data$covid)
 
 # Subset the data for COVID-19 cases only
