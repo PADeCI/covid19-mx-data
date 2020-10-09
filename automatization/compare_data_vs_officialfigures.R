@@ -31,16 +31,16 @@ wb <- loadWorkbook("data-validation/bitacora_historica_datos_abiertos.xlsx")
 #--------------------------------------------#
 
 date <- Sys.Date()
-#date <- as.Date("2020-10-04")
+date <- as.Date("2020-10-08")
 date <- format(date, format="%Y-%m-%d")
 
 
 #Confirmados, Negativos y Sospechosos
-resultado <- table(ssa$RESULTADO)
+resultado <- table(ssa$CLASIFICACION_FINAL)
 resultado <- as.vector(resultado)
-confirmados <- resultado[1]
-negativos <- resultado[2]
-sospechosos <- resultado[3]
+confirmados <- resultado[1] + resultado[2] + resultado[3]
+negativos <- resultado[7]
+sospechosos <- resultado[4] +resultado[5] + resultado[6]
 
 
 #Hospitalizados

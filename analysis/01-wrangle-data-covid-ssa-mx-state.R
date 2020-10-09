@@ -30,8 +30,8 @@ aut_date <- paste(date, "COVID19MEXICO.csv",sep="")
 path_csv_file <- file.path("data-raw", aut_date)
 
 ssa <- fread(path_csv_file,header=TRUE)
-#ssa1 <- fread("data-raw/201007COVID19MEXICO.csv",header=TRUE)
-#ssa <- read.csv("data-raw/200717COVID19MEXICO.csv")
+ssa <- fread("data-raw/201008COVID19MEXICO.csv",header=TRUE)
+#ssa <- read.csv("data-raw/201006COVID19MEXICO.csv")
 
 load("data-raw/df_pop_state.Rdata")   # population for states
 # Data for ZMVM
@@ -56,7 +56,10 @@ df_pop_state_2020 <- df_pop_state %>%
 #--------------------------------------------#
 
 # Check that database confirms numbers in the public report
-table(ssa$RESULTADO_LAB)
+#(Sumar de clasificacion final; 1,2 y 3 )
+#Negativos = 7
+table(ssa$CLASIFICACION_FINAL)
+
 
 # Keep important variables only from ssa data
 # ssa_data <- ssa %>%
@@ -65,8 +68,7 @@ table(ssa$RESULTADO_LAB)
 
 ssa_data <- ssa %>%
   select(ENTIDAD_RES, MUNICIPIO_RES, FECHA_INGRESO, FECHA_SINTOMAS,
-         FECHA_DEF, EDAD, SEXO, TIPO_PACIENTE, INTUBADO, UCI, RESULTADO_LAB)
-
+         FECHA_DEF, EDAD, SEXO, TIPO_PACIENTE, INTUBADO, UCI, CLASIFICACION_FINAL)
 # Naming the values of the ENTIDAD_RES variable in english and spanish
 ssa_data <- ssa_data %>%
   mutate(state = case_when(ENTIDAD_RES==1 ~ "Aguascalientes",
@@ -139,9 +141,8 @@ table(ssa_data$state)
 table(ssa_data$entidad)
  
 # Create a variable = 1 if COVID-19 is positive
-#ssa_data$covid <- ifelse(ssa_data$RESULTADO == 1, 1, 0)
-#ssa_data$covid <- ifelse(ssa_data$CLASIFICACION_FINAL == 1, 1, 0)
-ssa_data$covid <- ifelse(ssa_data$RESULTADO_LAB == 1, 1, 0)
+ssa_data$covid <- ifelse(ssa_data$CLASIFICACION_FINAL %in% c(1,2,3), 1, 0)
+
 
 table(ssa_data$covid)
 
@@ -193,8 +194,8 @@ table(ssa_data$date_dx)
 # time_cases: time (number of days where 0 = day of first var_outcome)
 
 # Date until which we create the sequence
-max_date <- Sys.Date()
-#max_date <- as.Date("2020-10-04")
+#max_date <- Sys.Date()
+max_date <- as.Date("2020-10-08")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -861,7 +862,7 @@ df_covid_ssa_state <- df_covid_ssa_state %>%
 
 # Add date stamp to data set
 df_covid_ssa_state$time_stamp <- Sys.Date()
-#df_covid_ssa_state$time_stamp <- "2020-10-04"
+df_covid_ssa_state$time_stamp <- "2020-10-08"
 
 
 #--------------------------------------------#
@@ -876,8 +877,8 @@ save(df_covid_ssa_state,
 write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
          row.names = FALSE)
 # 
-# write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-10-04.csv",
-#             row.names = FALSE)
+write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2020-10-08.csv",
+            row.names = FALSE)
 
 
 # Another option to save the file (just in case accents are not shown)
