@@ -22,7 +22,7 @@ library(data.table)
 #--------------------------------------------#
 
 #ssa <- read.csv("data-raw/200713COVID19MEXICO.csv")
-ssa <- fread("data-raw/200903COVID19MEXICO.csv",header=TRUE)
+ssa <- fread("data-raw/201103COVID19MEXICO.csv",header=TRUE)
 load("data-raw/df_pop_state.Rdata")   # population for states
 # Data for ZMVM
 load("data-raw/df_pop_ZMVM.Rdata")   
@@ -46,12 +46,14 @@ df_pop_state_2020 <- df_pop_state %>%
 #--------------------------------------------#
 
 # Check that database confirms numbers in the public report
-table(ssa$RESULTADO)
+#(Sumar de clasificacion final; 1,2 y 3 )
+#Negativos = 7
+table(ssa$CLASIFICACION_FINAL)
 
 # Keep important variables only from ssa data
 ssa_data <- ssa %>%
   select(ENTIDAD_RES, MUNICIPIO_RES, FECHA_INGRESO, FECHA_SINTOMAS, 
-         FECHA_DEF, EDAD, SEXO, TIPO_PACIENTE, INTUBADO, UCI, RESULTADO)
+         FECHA_DEF, EDAD, SEXO, TIPO_PACIENTE, INTUBADO, UCI, CLASIFICACION_FINAL)
 
 # Naming the values of the ENTIDAD_RES variable in english and spanish
 ssa_data <- ssa_data %>%
@@ -125,7 +127,7 @@ table(ssa_data$state)
 table(ssa_data$entidad)
  
 # Create a variable = 1 if COVID-19 is positive
-ssa_data$covid <- ifelse(ssa_data$RESULTADO == 1, 1, 0)
+ssa_data$covid <- ifelse(ssa_data$CLASIFICACION_FINAL %in% c(1,2,3), 1, 0)
 # Check it is the same as "confirmed" in the report
 table(ssa_data$covid)
 
@@ -305,7 +307,7 @@ ssa_data <- ssa_data %>%
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-#max_date <- as.Date("2020-09-03")
+#max_date <- as.Date("2020-11-03")
 
 # Symptomatic observations grouped by (country, state, county, age_groups) 
 # and date_sx
@@ -642,7 +644,7 @@ df_covid_ssa_state_age_groups <- sx_full %>%
 
 # Add date stamp to data set
 df_covid_ssa_state_age_groups$time_stamp <- Sys.Date()
-#df_covid_ssa_state_age_groups$time_stamp <- "2020-09-03"
+#df_covid_ssa_state_age_groups$time_stamp <- "2020-11-03"
 
 
 #--------------------------------------------#
@@ -657,7 +659,7 @@ save(df_covid_ssa_state_age_groups,
 write.csv(df_covid_ssa_state_age_groups, paste0("data/state_age_groups/covid_ssa_state_age_groups_",Sys.Date(),".csv"),
           row.names = FALSE)
 
-# write.csv(df_covid_ssa_state_age_groups, "data/state_age_groups/covid_ssa_state_age_groups_2020-09-03.csv",
+# write.csv(df_covid_ssa_state_age_groups, "data/state_age_groups/covid_ssa_state_age_groups_2020-11-03.csv",
 #          row.names = FALSE)
 
 # Another option to save the file (just in case accents are not shown)
