@@ -862,7 +862,7 @@ df_covid_ssa_state <- df_covid_ssa_state %>%
 
 # Add date stamp to data set
 df_covid_ssa_state$time_stamp <- Sys.Date()
-df_covid_ssa_state$time_stamp <- "2020-11-08"
+df_covid_ssa_state$time_stamp <- "2020-11-09"
 
 
 #--------------------------------------------#
