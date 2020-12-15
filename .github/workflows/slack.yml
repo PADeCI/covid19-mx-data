@@ -21,4 +21,4 @@ jobs:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       uses: pullreminders/slack-action@master
       with:
-        args: '{\"channel\":\"C013GNQ3YGH\",\"text\":\"La BD covid19-mx ha sido actualizada\"}'
+        args: '{\"channel\":\"C013GNQ3YGH\",\"text\":\"La Base de Datos covid19-mx ha sido actualizada\"}'
