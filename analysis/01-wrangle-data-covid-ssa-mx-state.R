@@ -4,7 +4,8 @@
 #                                                         #
 # Authors:                                                #
 #         Yadira Peralta                                  #
-#         Regina Medina                                   # 
+#         Regina Medina
+#         Mariana Fernandez
 # April 2020                                              #
 ###########################################################
 
