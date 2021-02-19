@@ -24,5 +24,5 @@ final_message=$message$date
 echo $final_message
 
 git add .
-git commit -m "TEST 2"
+git commit -m "'$final_message'"
 git push
