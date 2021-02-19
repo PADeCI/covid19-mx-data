@@ -1,10 +1,11 @@
+
 #!/bin/sh
 
 echo "Git pull"
 git pull
 echo "Descargando base oficial"
 
-python3 download_official_data.py
+#python3 download_official_data.py
 
 echo "####################################"
 echo "BASE DESCARGADA EXITOSAMENTE DE SSA"
@@ -16,7 +17,12 @@ echo "###################################"
 echo "BASE ACTUALIZADA EXITOSAMENTE" 
 echo "##################################" 
 
-date = $(date +"%Y-%m-%d")
+date=$(date +"%Y-%m-%d")
 
-message =  "Raw and Clean Data from SSA for $date"
-echo message
+message="Raw and Clean Data from SSA for "
+final_message=$message$date
+echo $final_message
+
+git add .
+git commit -m "TEST 2"
+git push
