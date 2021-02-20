@@ -11,7 +11,7 @@ echo "####################################"
 echo "BASE DESCARGADA EXITOSAMENTE DE SSA"
 echo "###################################"
 
-Rscript  "analysis/01-wrangle-data-covid-ssa-mx-state.R"
+Rscript  analysis/01-wrangle-data-covid-ssa-mx-state.R
  
 echo "###################################"
 echo "BASE ACTUALIZADA EXITOSAMENTE" 
