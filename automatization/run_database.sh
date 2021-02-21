@@ -11,8 +11,8 @@ echo "####################################"
 echo "BASE DESCARGADA EXITOSAMENTE DE SSA"
 echo "###################################"
 
-Rscript  analysis/01-wrangle-data-covid-ssa-mx-state.R
- 
+Rscript "/home/admon/covid19-mx-data/main.R"
+
 echo "###################################"
 echo "BASE ACTUALIZADA EXITOSAMENTE" 
 echo "##################################" 
@@ -25,4 +25,4 @@ echo $final_message
 
 git add .
 git commit -m "'$final_message'"
-#git push
+git push
