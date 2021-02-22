@@ -11,8 +11,9 @@
 ##
 ##************************************************************************
 
+setwd("/home/admon/covid19-mx-data")
 source("analysis/01-wrangle-data-covid-ssa-mx-state.R")
-source("automatization/compare_data_vs_officialfigures.R")
-rmarkdown::render("automatization/generate_daily_report.Rmd")
+#source("automatization/compare_data_vs_officialfigures.R")
+#rmarkdown::render("automatization/generate_daily_report.Rmd")
 
 
