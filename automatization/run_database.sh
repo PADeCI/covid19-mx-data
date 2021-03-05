@@ -23,6 +23,6 @@ message="Raw and Clean Data from SSA for "
 final_message=$message$date
 echo $final_message
 
-git add .
+git add /home/admon/covid19-mx-data/
 git commit -m "'$final_message'"
 git push
