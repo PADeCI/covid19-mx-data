@@ -24,7 +24,7 @@ library(data.table)
 #--------------------------------------------#
 
 date <- Sys.Date()
-#date <- as.Date("2021-01-15")
+#date <- as.Date("2021-04-18")
 date <- format(date, format="%y%m%d")
 
 aut_date <- paste(date, "COVID19MEXICO.csv",sep="")
@@ -195,7 +195,7 @@ table(ssa_data$date_dx)
 
 # Date until which we create the sequence
 max_date <- Sys.Date()
-#max_date <- as.Date("2021-02-06")
+#max_date <- as.Date("2021-04-18")
 
 # Symptomatic observations grouped by (country, state, county) 
 # and date_sx
@@ -863,7 +863,7 @@ df_covid_ssa_state <- df_covid_ssa_state %>%
 # Add date stamp to data set
 
 df_covid_ssa_state$time_stamp <- Sys.Date()
-#df_covid_ssa_state$time_stamp <- "2021-02-06"
+#df_covid_ssa_state$time_stamp <- "2021-04-18"
 
 
 #--------------------------------------------#
@@ -878,8 +878,7 @@ save(df_covid_ssa_state,
 write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
          row.names = FALSE)
 # # #
-# write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2021-02-06.csv",
-#               row.names = FALSE)
+#write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2021-04-18.csv", row.names = FALSE)
 
 
 # Another option to save the file (just in case accents are not shown)
