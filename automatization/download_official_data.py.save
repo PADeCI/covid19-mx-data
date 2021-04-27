@@ -1,0 +1,17 @@
+#Download the Data Base from Federal Goverment
+
+import csv
+import urllib.request
+from io import StringIO
+
+from datetime import datimport requests, zipfile, io
+
+today = date.today()
+d1 = today.strftime("%d%m%Y")
+
+#zip_file_url = "http://187.191.75.115/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip"
+zip_file_url = "http://datosabiertos.salud.gob.mx/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip"
+r = requests.get(zip_file_url)
+z = zipfile.ZipFile(io.BytesIO(r.content))
+#z.extractall(path = '/home/admon/covid19-mx-data/data-raw')
+z.extractall(name = d1, path = '/home/admon/covid19-mx-data/data-raw')
