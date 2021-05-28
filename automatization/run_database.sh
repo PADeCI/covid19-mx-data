@@ -16,8 +16,8 @@ Rscript "/home/admon/covid19-mx-data/main.R"
 echo "###################################"
 echo "BASE ACTUALIZADA EXITOSAMENTE" 
 echo "##################################" 
-
-date=$(date +"%Y-%m-%d")
+sum=1
+date=$(date +"%Y-%m-%d" -$s)
 
 message="Raw and Clean Data from SSA for "
 final_message=$message$date
