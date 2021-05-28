@@ -10,7 +10,7 @@ import os
 from datetime import date
 
 os.chdir("/home/admon/covid19-mx-data/data-raw")
-today = date.today()
+today = date.today() - 1
 d1 = today.strftime("%y%m%d")
 file_name = d1 + "COVID19MEXICO.csv"
 
