@@ -7,11 +7,11 @@ from io import StringIO
 import requests, zipfile, io
 import os
 
-from datetime import date
+from datetime import date, timedelta
 
 os.chdir("/home/admon/covid19-mx-data/data-raw")
-today = date.today() - datetime.timedelta(days=1)
-d1 = today.strftime("%y%m%d")
+dates = date.today() - timedelta(days=1)
+d1 = dates.strftime("%y%m%d")
 file_name = d1 + "COVID19MEXICO.csv"
 
 #zip_file_url = "http://187.191.75.115/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip"
