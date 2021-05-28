@@ -23,7 +23,7 @@ library(data.table)
 ####            Load data                 #### 
 #--------------------------------------------#
 
-date <- Sys.Date()
+date <- Sys.Date() - 1
 #date <- as.Date("2021-04-18")
 date <- format(date, format="%y%m%d")
 
@@ -194,7 +194,7 @@ table(ssa_data$date_dx)
 # time_cases: time (number of days where 0 = day of first var_outcome)
 
 # Date until which we create the sequence
-max_date <- Sys.Date()
+max_date <- Sys.Date() - 1
 #max_date <- as.Date("2021-04-18")
 
 # Symptomatic observations grouped by (country, state, county) 
@@ -862,7 +862,7 @@ df_covid_ssa_state <- df_covid_ssa_state %>%
 
 # Add date stamp to data set
 
-df_covid_ssa_state$time_stamp <- Sys.Date()
+df_covid_ssa_state$time_stamp <- Sys.Date() - 1
 #df_covid_ssa_state$time_stamp <- "2021-04-18"
 
 
@@ -875,7 +875,7 @@ save(df_covid_ssa_state,
      file = "data/state/df_covid_ssa_state.Rdata")
 
 #Save file in csv format
-write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date(),".csv"),
+write.csv(df_covid_ssa_state, paste0("data/state/covid_ssa_state_",Sys.Date() - 1,".csv"),
          row.names = FALSE)
 # # #
 #write.csv(df_covid_ssa_state, "data/state/covid_ssa_state_2021-04-18.csv", row.names = FALSE)
