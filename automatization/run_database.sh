@@ -17,6 +17,7 @@ echo "###################################"
 echo "BASE ACTUALIZADA EXITOSAMENTE" 
 echo "##################################" 
 
+<<<<<<< HEAD
 
 #For everyday
 #date=$(date +"%Y-%m-%d")
@@ -26,6 +27,9 @@ yest=$(date --date="yesterday")
 echo "$yest"
 yest=$(date --date="yesterday" +"%Y-%m-%d")
 echo "The database was last verified on $yest"
+=======
+date=$(date +"%Y-%m-%d")
+>>>>>>> 177dcfbafe9c43e7e933f28899a83460f2fbca4a
 
 message="Raw and Clean Data from SSA for "
 final_message=$message$yest
